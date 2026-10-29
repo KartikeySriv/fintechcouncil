@@ -1,0 +1,571 @@
+﻿<body>
+<meta name="theme-color" content="#BF1A1F">
+<title>FCC Website Redesign</title><meta name="description" content="Fintech Convergence Council (FCC) — the industry voice for regulated financial service providers and fintech companies in India.">
+<link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;600;700&family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+<style>/* =========================================================
+   FCC — Fintech Convergence Council · Design system
+   Brand colours taken from fintechcouncil.in
+   ========================================================= */
+:root{
+  --red:#BF1A1F;--red-dark:#9A1418;--red-deep:#6E0E12;--red-bright:#F0595D;--red-soft:#FBECEC;--red-tint:#FDF5F5;
+  --charcoal:#222;--ink:#222;--grey:#7B7D7C;--muted:#66696A;--line:#E6E6E6;--bg:#F5F5F5;--white:#fff;
+  --ok:#1E8E5A;
+  --radius:14px;--max:1200px;
+  --sans:"Plus Jakarta Sans",system-ui,sans-serif;
+  --mono:"JetBrains Mono",ui-monospace,monospace;
+  --shadow:0 18px 44px rgba(0,0,0,.08);
+}
+*{box-sizing:border-box;margin:0;padding:0}
+html{scroll-behavior:smooth;color-scheme:light}
+body{font-family:var(--sans);color:var(--ink);background:#fff;line-height:1.6;-webkit-font-smoothing:antialiased}
+a{color:inherit;text-decoration:none}
+img{max-width:100%;display:block}
+button{font:inherit}
+.wrap{max-width:var(--max);margin:0 auto;padding:0 24px}
+h1,h2,h3,h4{line-height:1.18;letter-spacing:-.015em}
+h2{font-size:clamp(1.6rem,3vw,2.3rem);font-weight:800;color:var(--charcoal);margin:.45rem 0 .8rem}
+.lead{color:var(--muted);max-width:660px;font-size:1.05rem}
+section{padding:88px 0}
+.bg-soft{background:var(--bg)}
+.mono{font-family:var(--mono)}
+.eyebrow{display:inline-flex;align-items:center;gap:8px;font-family:var(--mono);font-size:.72rem;font-weight:600;letter-spacing:.14em;text-transform:uppercase;color:var(--red)}
+.eyebrow::before{content:"";width:18px;height:2px;background:currentColor}
+.sec-head{display:flex;justify-content:space-between;align-items:flex-end;gap:24px;margin-bottom:40px;flex-wrap:wrap}
+
+/* Buttons */
+.btn{display:inline-flex;align-items:center;gap:8px;padding:12px 22px;border-radius:999px;font-weight:700;font-size:.93rem;transition:.2s;border:0;cursor:pointer;white-space:nowrap}
+.btn-primary{background:var(--red);color:#fff}.btn-primary:hover{background:var(--red-dark)}
+.btn-light{background:#fff;color:var(--red)}.btn-light:hover{background:var(--charcoal);color:#fff}
+.btn-ghost{border:1.5px solid rgba(255,255,255,.5);color:#fff;background:transparent}.btn-ghost:hover{background:rgba(255,255,255,.12)}
+.btn-outline{border:1.5px solid var(--charcoal);color:var(--charcoal);background:transparent}.btn-outline:hover{background:var(--charcoal);color:#fff}
+.btn-sm{padding:8px 16px;font-size:.84rem}
+.link-arrow{font-weight:700;color:var(--red);font-size:.9rem;display:inline-flex;gap:6px;align-items:center}
+.link-arrow:hover{gap:10px}
+
+/* Header: brand row + always-visible menu band */
+header.nav{position:sticky;top:env(safe-area-inset-top,0px);z-index:60;background:#fff;box-shadow:0 1px 0 var(--line)}
+.row1 .wrap{display:flex;align-items:center;justify-content:space-between;height:66px;gap:16px}
+.brand{display:flex;align-items:center;gap:12px;flex:none}
+.brand-mark{width:42px;height:42px;border-radius:11px;background:var(--red);display:grid;place-items:center;color:#fff;font-weight:800;font-size:.9rem;position:relative;letter-spacing:.02em}
+.brand-mark::after{content:"";position:absolute;right:-4px;bottom:-4px;width:14px;height:14px;border-radius:50%;background:var(--grey);border:3px solid #fff}
+.brand-text strong{display:block;color:var(--charcoal);font-size:.94rem;line-height:1.1;white-space:nowrap}
+.brand-text span{font-size:.7rem;color:var(--muted)}
+.hdr-right{display:flex;align-items:center;gap:20px}
+.hdr-links{display:flex;gap:12px;font-size:.8rem;color:var(--muted)}
+.hdr-links a:hover{color:var(--red)}
+.mainnav{background:var(--charcoal)}
+.mainnav .wrap{display:flex}
+.menu{display:flex;gap:2px;list-style:none;align-items:stretch;margin:0 -10px}
+.menu>li{position:relative}
+.menu>li>a{display:flex;align-items:center;gap:5px;height:46px;padding:0 13px;font-weight:600;font-size:.88rem;color:#E8E8E8;white-space:nowrap;position:relative}
+.menu>li>a .chev{width:10px;height:10px;opacity:.6;transition:.2s}
+.menu>li:hover>a{color:#fff;background:rgba(255,255,255,.07)}
+.menu>li:hover .chev{transform:rotate(180deg)}
+.menu>li>a.active{color:#fff}
+.menu>li>a.active::after{content:"";position:absolute;left:13px;right:13px;bottom:0;height:3px;background:var(--red-bright);border-radius:3px 3px 0 0}
+.dropdown{position:absolute;top:100%;left:0;min-width:240px;background:#fff;border:1px solid var(--line);border-top:3px solid var(--red);border-radius:0 0 12px 12px;box-shadow:var(--shadow);padding:8px;opacity:0;visibility:hidden;transform:translateY(6px);transition:.18s;list-style:none;z-index:5}
+.menu>li:hover .dropdown,.menu>li:focus-within .dropdown{opacity:1;visibility:visible;transform:none}
+.dropdown a{display:flex;flex-direction:column;padding:9px 12px;border-radius:8px;font-size:.9rem;font-weight:600;color:var(--charcoal)}
+.dropdown a small{font-weight:400;color:var(--muted);font-size:.76rem}
+.dropdown a:hover{background:var(--bg);color:var(--red)}
+
+/* Home hero */
+.hero{background:radial-gradient(900px 520px at 88% -10%,rgba(255,255,255,.16),transparent 60%),linear-gradient(135deg,var(--red-deep) 0%,var(--red-dark) 30%,var(--red) 70%,#D4262B 100%);color:#fff;padding:84px 0 120px;position:relative;overflow:hidden}
+.grid-bg::before{content:"";position:absolute;inset:0;background-image:linear-gradient(rgba(255,255,255,.06) 1px,transparent 1px),linear-gradient(90deg,rgba(255,255,255,.06) 1px,transparent 1px);background-size:44px 44px;mask-image:linear-gradient(to bottom,#000 10%,transparent 90%);pointer-events:none}
+.hero .wrap{position:relative;display:grid;grid-template-columns:1.05fr .95fr;gap:40px;align-items:center}
+.hero h1{font-size:clamp(2.2rem,4.8vw,3.6rem);font-weight:800;margin:16px 0 18px}
+.hero h1 em{font-style:normal;box-shadow:inset 0 -.3em 0 rgba(34,34,34,.35)}
+.hero p{color:#FBE3E3;font-size:1.1rem;max-width:560px}
+.hero .actions{display:flex;gap:12px;margin-top:30px;flex-wrap:wrap}
+.pill{display:inline-flex;align-items:center;gap:8px;background:rgba(255,255,255,.12);border:1px solid rgba(255,255,255,.22);padding:6px 14px;border-radius:999px;font-size:.78rem;font-weight:600;font-family:var(--mono)}
+.pill i{width:7px;height:7px;border-radius:50%;background:#fff}
+.hero-trust{display:flex;gap:28px;margin-top:40px;flex-wrap:wrap}
+.hero-trust div{font-size:.82rem;color:#F6C7C8}
+.hero-trust b{display:block;font-size:1.5rem;color:#fff;font-weight:800}
+
+/* Hero network graphic */
+.hero-art{position:relative;aspect-ratio:1/1;max-width:540px;width:100%;justify-self:end}
+.hero-art svg.net{width:100%;height:100%;overflow:visible}
+.float{position:absolute;background:#fff;color:var(--charcoal);border-radius:14px;box-shadow:0 18px 40px rgba(0,0,0,.22);padding:12px 14px;font-size:.78rem;animation:bob 6s ease-in-out infinite}
+.float b{font-size:.9rem}
+.float .k{font-family:var(--mono);font-size:.66rem;color:var(--muted);text-transform:uppercase;letter-spacing:.08em}
+.float.f1{left:-6%;top:12%}
+.float.f2{right:-6%;bottom:-2%;animation-delay:-2s}
+.float.f3{left:-4%;bottom:14%;animation-delay:-4s}
+.float .row{display:flex;align-items:center;gap:10px}
+.tick{width:26px;height:26px;border-radius:50%;background:#E6F5EE;color:var(--ok);display:grid;place-items:center;font-weight:800;flex:none}
+.spark{display:block;margin-top:6px}
+@keyframes bob{0%,100%{transform:translateY(0)}50%{transform:translateY(-10px)}}
+
+/* Ticker */
+.ticker{background:var(--charcoal);color:#ddd;overflow:hidden;white-space:nowrap;border-top:1px solid #333}
+.ticker-track{display:inline-flex;gap:0;animation:scroll 40s linear infinite;padding:14px 0}
+.ticker span{font-family:var(--mono);font-size:.8rem;letter-spacing:.06em;padding:0 22px;display:inline-flex;align-items:center;gap:22px}
+.ticker span::after{content:"◆";color:var(--red-bright);font-size:.55rem}
+@keyframes scroll{to{transform:translateX(-50%)}}
+
+/* Stats */
+.stats{margin-top:-60px;position:relative;z-index:3}
+.stats .grid{display:grid;grid-template-columns:repeat(4,1fr);background:#fff;border-radius:18px;box-shadow:var(--shadow);overflow:hidden;border:1px solid var(--line)}
+.stat{padding:26px 26px;border-right:1px solid var(--line);position:relative}
+.stat:last-child{border-right:0}
+.stat b{display:block;font-size:2.1rem;font-weight:800;color:var(--charcoal);font-feature-settings:"tnum"}
+.stat b sup{color:var(--red);font-size:1.1rem}
+.stat span{font-size:.86rem;color:var(--muted)}
+.stat .bar{position:absolute;left:26px;right:26px;bottom:0;height:3px;background:linear-gradient(90deg,var(--red) var(--p,40%),var(--line) var(--p,40%))}
+
+/* Page hero (inner pages) */
+.page-hero{background:linear-gradient(135deg,var(--red-deep),var(--red-dark) 40%,var(--red));color:#fff;padding:64px 0 72px;position:relative;overflow:hidden}
+.page-hero .wrap{position:relative;display:grid;grid-template-columns:1.3fr .7fr;gap:40px;align-items:center}
+.crumbs{font-family:var(--mono);font-size:.74rem;color:#F6C7C8;display:flex;gap:8px;flex-wrap:wrap;margin-bottom:14px}
+.crumbs a:hover{color:#fff}
+.page-hero h1{font-size:clamp(2rem,4vw,3rem);font-weight:800;margin-bottom:12px}
+.page-hero p{color:#FBE3E3;max-width:600px;font-size:1.06rem}
+.page-hero .ph-art{justify-self:end;width:100%;max-width:300px}
+.page-hero .ph-art svg{width:100%;height:auto}
+.subnav{background:#fff;border-bottom:1px solid var(--line);position:sticky;top:calc(112px + env(safe-area-inset-top,0px));z-index:40}
+.subnav .wrap{display:flex;gap:4px;overflow-x:auto;scrollbar-width:none}
+.subnav a{padding:14px 16px;font-weight:600;font-size:.88rem;color:var(--muted);border-bottom:2px solid transparent;white-space:nowrap}
+.subnav a:hover{color:var(--charcoal)}
+.subnav a.on{color:var(--red);border-color:var(--red)}
+
+/* Cards */
+.card{background:#fff;border:1px solid var(--line);border-radius:var(--radius);padding:26px;transition:.25s}
+.card:hover{border-color:#d8d8d8;box-shadow:var(--shadow)}
+.icon-box{width:48px;height:48px;border-radius:12px;background:var(--red-soft);color:var(--red);display:grid;place-items:center;flex:none}
+.icon-box.dark{background:var(--charcoal);color:#fff}
+.grid-2{display:grid;grid-template-columns:repeat(2,1fr);gap:20px}
+.grid-3{display:grid;grid-template-columns:repeat(3,1fr);gap:20px}
+.grid-4{display:grid;grid-template-columns:repeat(4,1fr);gap:18px}
+.split{display:grid;grid-template-columns:1fr 1fr;gap:64px;align-items:center}
+
+/* Committee cards */
+.cards5{display:grid;grid-template-columns:repeat(5,1fr);gap:16px}
+.ccard{background:#fff;border-radius:var(--radius);padding:24px 22px;border:1px solid var(--line);position:relative;overflow:hidden;transition:.25s;display:flex;flex-direction:column}
+.ccard::before{content:"";position:absolute;left:0;top:0;height:4px;width:100%;background:var(--red);transform:scaleX(0);transform-origin:left;transition:.3s}
+.ccard:hover{transform:translateY(-4px);box-shadow:var(--shadow)}
+.ccard:hover::before{transform:scaleX(1)}
+.ccard .icon-box{margin-bottom:18px}
+.ccard .code{position:absolute;right:16px;top:18px;font-family:var(--mono);font-size:.68rem;color:#bbb}
+.ccard h3{font-size:1.05rem;margin-bottom:6px}
+.ccard p{font-size:.86rem;color:var(--muted);flex:1}
+.ccard .chair{margin-top:14px;padding-top:12px;border-top:1px dashed var(--line);font-size:.76rem;color:var(--muted)}
+.ccard .chair b{display:block;color:var(--charcoal);font-size:.82rem}
+
+/* Flow / process */
+.flow{display:grid;grid-template-columns:repeat(4,1fr);gap:0;position:relative;counter-reset:step}
+.flow::before{content:"";position:absolute;top:31px;left:12%;right:12%;height:2px;background:repeating-linear-gradient(90deg,var(--red) 0 8px,transparent 8px 14px)}
+.flow .step{text-align:center;padding:0 14px;position:relative}
+.flow .dot{width:64px;height:64px;border-radius:50%;background:#fff;border:2px solid var(--red);display:grid;place-items:center;margin:0 auto 18px;color:var(--red);position:relative;z-index:1}
+.flow .dot::after{counter-increment:step;content:"0" counter(step);position:absolute;top:-8px;right:-10px;background:var(--charcoal);color:#fff;font-family:var(--mono);font-size:.62rem;padding:2px 6px;border-radius:6px}
+.flow h4{font-size:1rem;margin-bottom:4px}
+.flow p{font-size:.85rem;color:var(--muted)}
+
+/* Tracker */
+.filters{display:flex;gap:8px;flex-wrap:wrap;margin-bottom:24px}
+.chip{border:1.5px solid var(--line);background:#fff;padding:7px 16px;border-radius:999px;font-size:.84rem;font-weight:600;color:var(--muted);cursor:pointer;transition:.15s}
+.chip:hover{border-color:var(--charcoal);color:var(--charcoal)}
+.chip.active{background:var(--charcoal);border-color:var(--charcoal);color:#fff}
+.chip .n{font-family:var(--mono);font-size:.7rem;opacity:.7;margin-left:4px}
+.tracker{display:grid;grid-template-columns:repeat(3,1fr);gap:14px}
+.sub{background:#fff;border:1px solid var(--line);border-radius:12px;padding:18px 20px;display:flex;flex-direction:column;gap:12px;transition:.2s;position:relative}
+.sub:hover{border-color:var(--red);box-shadow:0 10px 24px rgba(191,26,31,.07)}
+.sub .top{display:flex;justify-content:space-between;align-items:center}
+.tag{align-self:flex-start;font-family:var(--mono);font-size:.66rem;font-weight:600;letter-spacing:.06em;padding:4px 9px;border-radius:6px;background:var(--red-soft);color:var(--red-dark);text-transform:uppercase}
+.tag.g{background:#EDEDED;color:#4a4a4a}
+.tag.ok{background:#E6F5EE;color:var(--ok)}
+.sub .status{font-family:var(--mono);font-size:.66rem;color:var(--ok);display:flex;align-items:center;gap:5px}
+.sub .status::before{content:"";width:6px;height:6px;border-radius:50%;background:currentColor}
+.sub h4{font-size:.93rem;font-weight:600;line-height:1.45}
+.hide{display:none!important}
+.center{text-align:center}
+.mt-28{margin-top:28px}
+
+/* Dark band */
+.dark{background:var(--charcoal);color:#fff}
+.dark h2{color:#fff}
+.dark .lead{color:#B5B5B5}
+.dark .eyebrow{color:var(--red-bright)}
+
+/* Events */
+.ev-grid{display:grid;grid-template-columns:1.25fr 1fr;gap:20px}
+.ev-feature{border-radius:18px;padding:36px;background:linear-gradient(135deg,var(--red),var(--red-dark));display:flex;flex-direction:column;justify-content:space-between;min-height:340px;position:relative;overflow:hidden;color:#fff}
+.ev-feature .bg-art{position:absolute;right:-40px;bottom:-40px;width:300px;opacity:.18}
+.ev-feature small{font-family:var(--mono);font-weight:600;letter-spacing:.12em;text-transform:uppercase;opacity:.85;font-size:.72rem}
+.ev-feature h3{font-size:2.1rem;margin:10px 0}
+.ev-feature .meta{display:flex;gap:20px;flex-wrap:wrap;font-weight:600;margin-top:12px;position:relative}
+.ev-list{display:grid;gap:12px}
+.ev-item{display:flex;gap:18px;align-items:center;padding:16px 18px;border-radius:14px;background:rgba(255,255,255,.05);border:1px solid rgba(255,255,255,.1);transition:.2s}
+.ev-item:hover{background:rgba(255,255,255,.1)}
+.ev-date{flex:none;width:66px;text-align:center;border-right:1px solid rgba(255,255,255,.18);padding-right:14px}
+.ev-date b{display:block;font-size:1.35rem;color:var(--red-bright)}
+.ev-date span{font-family:var(--mono);font-size:.64rem;color:#aaa;text-transform:uppercase;letter-spacing:.06em}
+.ev-item h4{font-size:.98rem}
+.ev-item p{font-size:.8rem;color:#aaa}
+
+/* Webinar tiles */
+.web-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:16px}
+.web{background:#fff;border:1px solid var(--line);border-radius:14px;overflow:hidden;display:flex;flex-direction:column;transition:.2s}
+.web:hover{transform:translateY(-3px);box-shadow:var(--shadow)}
+.web .wtop{background:var(--charcoal);color:#fff;padding:14px 16px;display:flex;justify-content:space-between;align-items:flex-start;position:relative;overflow:hidden}
+.web .wtop::after{content:"";position:absolute;right:-20px;top:-20px;width:80px;height:80px;border-radius:50%;border:12px solid rgba(240,89,93,.25)}
+.web .d{font-size:1.8rem;font-weight:800;line-height:1}
+.web .m{font-family:var(--mono);font-size:.68rem;letter-spacing:.1em;color:#bbb;text-transform:uppercase}
+.web .wbody{padding:16px;display:flex;flex-direction:column;gap:10px;flex:1}
+.web h4{font-size:.92rem;font-weight:700;line-height:1.4;flex:1}
+.web .time{font-family:var(--mono);font-size:.72rem;color:var(--muted)}
+.dark .web{background:#2b2b2b;border-color:#3a3a3a}
+.dark .web .wtop{background:var(--red)}
+.dark .web .m{color:#F6C7C8}
+.dark .web .time{color:#aaa}
+
+/* Research covers */
+.covers{display:grid;grid-template-columns:repeat(4,1fr);gap:22px}
+.cover{display:flex;flex-direction:column;gap:12px}
+.cover .book{aspect-ratio:3/4;border-radius:6px 12px 12px 6px;position:relative;overflow:hidden;padding:20px 18px 18px 26px;display:flex;flex-direction:column;justify-content:space-between;color:#fff;box-shadow:0 14px 30px rgba(0,0,0,.18);transition:.25s}
+.cover:hover .book{transform:translateY(-5px) rotate(-1deg);box-shadow:0 22px 40px rgba(0,0,0,.24)}
+.cover .book::before{content:"";position:absolute;left:0;top:0;bottom:0;width:10px;background:rgba(0,0,0,.25)}
+.cover .book svg{position:absolute;right:-10px;bottom:-10px;width:70%;opacity:.25}
+.cover .book .kind{font-family:var(--mono);font-size:.62rem;letter-spacing:.12em;text-transform:uppercase;opacity:.85;position:relative}
+.cover .book h4{font-size:1.02rem;font-weight:800;position:relative;line-height:1.25}
+.cover .book .yr{font-family:var(--mono);font-size:.72rem;position:relative}
+.b1{background:linear-gradient(160deg,var(--red),var(--red-deep))}
+.b2{background:linear-gradient(160deg,#2f2f2f,#111)}
+.b3{background:linear-gradient(160deg,#8a8c8b,#555)}
+.b4{background:linear-gradient(160deg,#D4262B,#9A1418)}
+.cover .meta{display:flex;justify-content:space-between;align-items:center;font-size:.82rem}
+.cover .meta span{color:var(--muted)}
+
+/* People */
+.people{display:grid;grid-template-columns:repeat(4,1fr);gap:18px}
+.person{background:#fff;border:1px solid var(--line);border-radius:16px;padding:24px;text-align:left;position:relative;overflow:hidden;transition:.2s}
+.person:hover{border-color:var(--red)}
+.avatar{width:64px;height:64px;border-radius:50%;background:var(--red-soft);color:var(--red);display:grid;place-items:center;font-weight:800;font-size:1.2rem;margin-bottom:16px;position:relative}
+.avatar::after{content:"";position:absolute;inset:-5px;border-radius:50%;border:1.5px dashed #e4b4b5}
+.person h4{font-size:1.02rem}
+.person .org{font-size:.84rem;color:var(--muted);margin-top:2px}
+.person .role{margin-top:12px;display:flex;flex-direction:column;gap:6px}
+.person.lead-card{background:var(--charcoal);color:#fff;border-color:var(--charcoal)}
+.person.lead-card .org{color:#bbb}
+.person.lead-card .avatar{background:var(--red);color:#fff}
+
+/* Membership card graphic */
+.mcard{width:100%;max-width:420px;aspect-ratio:1.586;border-radius:20px;background:radial-gradient(400px 200px at 90% 0%,rgba(255,255,255,.25),transparent 60%),linear-gradient(135deg,var(--red),var(--red-deep));color:#fff;padding:26px 28px;display:flex;flex-direction:column;justify-content:space-between;box-shadow:0 30px 60px rgba(110,14,18,.35);position:relative;overflow:hidden;transform:rotate(-4deg)}
+.mcard::after{content:"";position:absolute;inset:0;background:repeating-linear-gradient(115deg,rgba(255,255,255,.04) 0 2px,transparent 2px 14px)}
+.mcard .chip-ic{width:46px;height:36px;border-radius:7px;background:linear-gradient(135deg,#f1d79a,#c9a24f);position:relative}
+.mcard .chip-ic::before{content:"";position:absolute;inset:8px 12px;border:1.5px solid rgba(0,0,0,.25);border-radius:3px}
+.mcard .num{font-family:var(--mono);letter-spacing:.18em;font-size:1.05rem;position:relative;z-index:1}
+.mcard .row{display:flex;justify-content:space-between;align-items:flex-end;position:relative;z-index:1}
+.mcard small{font-family:var(--mono);font-size:.6rem;letter-spacing:.12em;opacity:.8;display:block}
+.mcard-wrap{display:grid;place-items:center;position:relative;padding:30px}
+.mcard-back{position:absolute;width:85%;max-width:380px;aspect-ratio:1.586;border-radius:20px;background:var(--charcoal);transform:rotate(6deg) translate(30px,10px);opacity:.9}
+
+/* Benefits list */
+.benefit{display:flex;gap:16px;padding:22px;border:1px solid var(--line);border-radius:14px;background:#fff;transition:.2s}
+.benefit:hover{border-color:var(--red)}
+.benefit h4{font-size:1rem;margin-bottom:4px}
+.benefit p{font-size:.88rem;color:var(--muted)}
+
+/* Forms */
+.form-card{background:#fff;border:1px solid var(--line);border-radius:18px;padding:34px;box-shadow:var(--shadow)}
+.form-grid{display:grid;grid-template-columns:1fr 1fr;gap:16px}
+.field{display:flex;flex-direction:column;gap:6px}
+.field.full{grid-column:1/-1}
+.field label{font-size:.82rem;font-weight:700}
+.field label i{color:var(--red);font-style:normal}
+.field input,.field select,.field textarea{font:inherit;font-size:.93rem;padding:12px 14px;border:1.5px solid var(--line);border-radius:10px;background:var(--bg);transition:.15s;color:var(--ink)}
+.field textarea{min-height:120px;resize:vertical}
+.field input:focus,.field select:focus,.field textarea:focus{outline:0;border-color:var(--red);background:#fff;box-shadow:0 0 0 4px var(--red-soft)}
+.form-note{font-size:.8rem;color:var(--muted);margin-top:14px}
+.form-ok{display:none;align-items:center;gap:12px;padding:16px;border-radius:12px;background:#E6F5EE;color:#165f3d;font-weight:600;margin-top:16px}
+.form-ok.show{display:flex}
+.steps-v{display:grid;gap:0;position:relative}
+.steps-v .s{display:flex;gap:16px;padding-bottom:26px;position:relative}
+.steps-v .s:not(:last-child)::before{content:"";position:absolute;left:17px;top:38px;bottom:4px;width:2px;background:var(--line)}
+.steps-v .n{width:36px;height:36px;border-radius:50%;background:var(--red);color:#fff;display:grid;place-items:center;font-family:var(--mono);font-size:.8rem;font-weight:700;flex:none}
+.steps-v h4{font-size:.98rem}
+.steps-v p{font-size:.86rem;color:var(--muted)}
+.contact-line{display:flex;gap:14px;align-items:flex-start;padding:16px 0;border-bottom:1px solid var(--line)}
+.contact-line:last-child{border:0}
+.contact-line b{display:block;font-size:.8rem;color:var(--muted);font-weight:600;font-family:var(--mono);text-transform:uppercase;letter-spacing:.08em}
+
+/* Members */
+.toolbar{display:flex;gap:12px;flex-wrap:wrap;align-items:center;margin-bottom:22px}
+.search{flex:1;min-width:240px;position:relative}
+.search input{width:100%;font:inherit;padding:13px 16px 13px 44px;border-radius:999px;border:1.5px solid var(--line);background:#fff}
+.search input:focus{outline:0;border-color:var(--red);box-shadow:0 0 0 4px var(--red-soft)}
+.search svg{position:absolute;left:16px;top:50%;transform:translateY(-50%);color:var(--muted)}
+.az{display:flex;flex-wrap:wrap;gap:4px;margin-bottom:24px}
+.az button{width:32px;height:32px;border-radius:8px;border:1px solid var(--line);background:#fff;font-size:.78rem;font-weight:700;cursor:pointer;color:var(--muted)}
+.az button:hover{border-color:var(--charcoal);color:var(--charcoal)}
+.az button.on{background:var(--red);border-color:var(--red);color:#fff}
+.az button:disabled{opacity:.3;cursor:default}
+.mgrid{display:grid;grid-template-columns:repeat(6,1fr);gap:12px}
+.mtile{background:#fff;border:1px solid var(--line);border-radius:12px;padding:16px 12px;display:flex;flex-direction:column;align-items:center;gap:10px;text-align:center;transition:.2s;min-height:128px;justify-content:center}
+.mtile:hover{border-color:var(--red);transform:translateY(-2px)}
+.mtile .logo{height:46px;display:grid;place-items:center}
+.mtile .logo img{max-height:46px;max-width:110px;object-fit:contain}
+.mono-av{width:46px;height:46px;border-radius:12px;background:var(--bg);color:var(--charcoal);display:grid;place-items:center;font-weight:800;font-size:.95rem;border:1px solid var(--line)}
+.mtile span{font-size:.8rem;font-weight:600;line-height:1.3}
+.count-line{font-family:var(--mono);font-size:.78rem;color:var(--muted);margin-bottom:12px}
+.marquee{overflow:hidden;mask-image:linear-gradient(90deg,transparent,#000 10%,#000 90%,transparent)}
+.marquee-track{display:inline-flex;gap:12px;animation:scroll 60s linear infinite;padding:4px 0}
+.marquee.rev .marquee-track{animation-direction:reverse}
+.mq{flex:none;padding:12px 20px;background:#fff;border:1px solid var(--line);border-radius:999px;font-weight:700;font-size:.88rem;color:var(--charcoal);display:inline-flex;align-items:center;gap:10px}
+.mq i{width:26px;height:26px;border-radius:50%;background:var(--red-soft);color:var(--red);display:grid;place-items:center;font-style:normal;font-size:.7rem;font-weight:800}
+
+/* Timeline */
+.timeline{position:relative;display:grid;gap:0}
+.timeline::before{content:"";position:absolute;left:110px;top:6px;bottom:6px;width:2px;background:linear-gradient(var(--red),var(--line))}
+.tl{display:grid;grid-template-columns:110px 1fr;gap:32px;padding-bottom:30px;position:relative}
+.tl .yr{font-family:var(--mono);font-weight:700;color:var(--red);text-align:right;padding-right:6px}
+.tl .body{position:relative}
+.tl .body::before{content:"";position:absolute;left:-39px;top:6px;width:14px;height:14px;border-radius:50%;background:#fff;border:3px solid var(--red)}
+.tl h4{font-size:1.02rem}
+.tl p{font-size:.88rem;color:var(--muted)}
+
+/* Bridge diagram */
+.bridge svg{width:100%;height:auto}
+
+/* Reports list */
+.rep{display:flex;align-items:center;gap:20px;padding:20px 22px;border:1px solid var(--line);border-radius:14px;background:#fff;transition:.2s}
+.rep:hover{border-color:var(--red);box-shadow:var(--shadow)}
+.rep .doc{width:52px;height:64px;border-radius:4px 10px 4px 4px;background:var(--red-soft);position:relative;flex:none;display:grid;place-items:center;font-family:var(--mono);font-size:.62rem;font-weight:700;color:var(--red)}
+.rep .doc::before{content:"";position:absolute;right:0;top:0;border-style:solid;border-width:0 12px 12px 0;border-color:transparent #fff transparent transparent;filter:drop-shadow(-1px 1px 0 #e9c2c3)}
+.rep h4{font-size:1.02rem}
+.rep p{font-size:.84rem;color:var(--muted)}
+.rep .go{margin-left:auto}
+
+/* CTA */
+.cta-box{border-radius:24px;background:linear-gradient(120deg,var(--red-dark),var(--red));color:#fff;padding:56px;display:grid;grid-template-columns:1.2fr 1fr;gap:40px;align-items:center;position:relative;overflow:hidden}
+.cta-box .art{position:absolute;right:-60px;top:-60px;width:320px;opacity:.12}
+.cta-box h2{color:#fff}
+.cta-box p{color:#FBE3E3}
+.cta-box .eyebrow{color:#fff;opacity:.85}
+.checks{list-style:none;display:grid;gap:10px;position:relative;z-index:1}
+.checks li{display:flex;gap:10px;align-items:flex-start;font-size:.95rem}
+.checks li::before{content:"✓";flex:none;width:22px;height:22px;border-radius:50%;background:#fff;color:var(--red);display:grid;place-items:center;font-size:.72rem;font-weight:800;margin-top:1px}
+.checks.dark-txt li::before{background:var(--red);color:#fff}
+.cta-actions{display:flex;gap:12px;margin-top:24px;flex-wrap:wrap}
+
+/* Bar viz */
+.hbar{display:grid;gap:12px}
+.hbar .r{display:grid;grid-template-columns:70px 1fr 36px;gap:12px;align-items:center;font-size:.85rem}
+.hbar .r b{font-family:var(--mono);font-size:.78rem}
+.hbar .track{height:12px;background:var(--bg);border-radius:6px;overflow:hidden}
+.hbar .fill{height:100%;background:var(--red);border-radius:6px;width:0;transition:width 1.2s cubic-bezier(.2,.8,.2,1)}
+.hbar .v{font-family:var(--mono);font-size:.8rem;text-align:right;color:var(--muted)}
+
+/* Footer */
+footer{background:#1A1A1A;color:#B0B0B0;padding:64px 0 24px;font-size:.9rem;border-top:4px solid var(--red)}
+.foot{display:grid;grid-template-columns:1.4fr 1fr 1fr 1fr 1.2fr;gap:36px}
+footer h5{color:#fff;font-size:.9rem;margin-bottom:14px}
+footer ul{list-style:none;display:grid;gap:8px}
+footer a:hover{color:var(--red-bright)}
+footer .brand-text strong{color:#fff}
+footer .brand-text span{color:#999}
+footer .brand-mark::after{border-color:#1A1A1A}
+.newsletter{display:flex;margin-top:14px;background:#262626;border-radius:999px;padding:4px;border:1px solid #333}
+.newsletter input{flex:1;background:transparent;border:0;color:#fff;padding:8px 14px;font:inherit;font-size:.85rem;min-width:0}
+.newsletter input:focus{outline:0}
+.foot-bottom{border-top:1px solid #2e2e2e;margin-top:48px;padding-top:20px;display:flex;justify-content:space-between;flex-wrap:wrap;gap:12px;font-size:.8rem}
+.soc{display:flex;gap:10px;margin-top:18px}
+.soc a{width:36px;height:36px;border-radius:50%;background:#262626;display:grid;place-items:center;color:#ddd}
+.soc a:hover{background:var(--red);color:#fff}
+
+/* Reveal on scroll */
+.reveal{animation:rise .6s ease both}
+@keyframes rise{from{transform:translateY(10px)}to{transform:none}}
+@media (prefers-reduced-motion:reduce){*{animation:none!important;transition:none!important}}
+
+/* Responsive */
+@media (max-width:1100px){
+  .cards5{grid-template-columns:repeat(3,1fr)}
+  .tracker,.web-grid,.covers,.people{grid-template-columns:repeat(2,1fr)}
+  .mgrid{grid-template-columns:repeat(4,1fr)}
+  .foot{grid-template-columns:1fr 1fr 1fr}
+  .grid-4{grid-template-columns:repeat(2,1fr)}
+}
+@media (max-width:1040px){
+  .hdr-links{display:none}
+  .menu>li>a{padding:0 11px}
+}
+@media (max-width:840px){
+  /* menu band stays visible: scrolls sideways, sub-pages reached via each section's tabs */
+  .mainnav .wrap{overflow-x:auto;scrollbar-width:none;-webkit-overflow-scrolling:touch}
+  .mainnav .wrap::-webkit-scrollbar{display:none}
+  .dropdown,.menu .chev{display:none}
+}
+@media (max-width:900px){
+  .hero .wrap,.split,.ev-grid,.cta-box,.page-hero .wrap{grid-template-columns:1fr}
+  .hero-art{justify-self:center;max-width:420px}
+  .page-hero .ph-art{display:none}
+  .stats .grid{grid-template-columns:repeat(2,1fr)}
+  .stat:nth-child(2){border-right:0}
+  .stat:nth-child(-n+2){border-bottom:1px solid var(--line)}
+  .grid-3,.grid-2{grid-template-columns:1fr}
+  .flow{grid-template-columns:1fr 1fr;row-gap:30px}
+  .flow::before{display:none}
+  .cta-box{padding:36px 28px}
+  section{padding:64px 0}
+}
+@media (max-width:560px){
+  .wrap{padding:0 16px}
+  .brand-text span{display:none}.brand-text strong{font-size:.86rem;white-space:normal;max-width:150px}
+  .row1 .wrap{height:62px}
+  .subnav{top:calc(108px + env(safe-area-inset-top,0px))}
+  .hero-trust{display:none}
+  .hero-art{max-width:330px;margin:10px auto 0}
+  .float.f2,.float.f3{display:none}.float.f1{left:-2%;top:-4%}
+  .hero{padding:56px 0 100px}
+  .cards5,.tracker,.web-grid,.covers,.people,.grid-4,.flow,.form-grid{grid-template-columns:1fr}
+  .mgrid{grid-template-columns:repeat(2,1fr)}
+  .foot{grid-template-columns:1fr}
+  .float.f1{left:0}.float.f2{right:0}
+  .form-card{padding:22px}
+  .timeline::before{left:70px}.tl{grid-template-columns:70px 1fr;gap:24px}.tl .body::before{left:-31px}
+  .rep{flex-wrap:wrap}.rep .go{margin-left:0}
+  .covers{grid-template-columns:1fr 1fr}
+}
+</style>
+
+<header class="nav">
+<div class="row1"><div class="wrap">
+<a href="index.html" class="brand" aria-label="FCC home"><!-- Swap for <img src="images/FCC-Logo.png" alt="FCC" height="44"> --><div class="brand-mark">FCC</div><div class="brand-text"><strong>Fintech Convergence Council</strong><span>An IAMAI initiative · Since 2018</span></div></a>
+<div class="hdr-right"><div class="hdr-links"><a href="mailto:info@fintechcouncil.in">info@fintechcouncil.in</a><span>·</span><a href="https://linkedin.com/company/69219060/" target="_blank" rel="noopener">LinkedIn</a><a href="https://twitter.com/FCCUpdates" target="_blank" rel="noopener">X</a><a href="https://www.facebook.com/Fintech-Convergence-Council-FCC-442712016473770/" target="_blank" rel="noopener">Facebook</a></div>
+<a href="apply-membership.html" class="btn btn-primary btn-sm nav-cta">Become a Member</a></div>
+</div></div>
+<nav class="mainnav" aria-label="Main"><div class="wrap"><ul class="menu"><li><a href="index.html" class="active">Home</a></li><li><a href="about.html">About<svg class="chev" viewBox="0 0 10 10" fill="none" stroke="currentColor" stroke-width="1.6"><path d="M2 4l3 3 3-3"/></svg></a><ul class="dropdown"><li><a href="about.html">About Us<small>Who we are and how we work</small></a></li><li><a href="about.html#council">Governing Council<small>Leadership of FCC</small></a></li><li><a href="annual-report.html">Annual Reports<small>Our year in review</small></a></li></ul></li><li><a href="committees.html">Committees<svg class="chev" viewBox="0 0 10 10" fill="none" stroke="currentColor" stroke-width="1.6"><path d="M2 4l3 3 3-3"/></svg></a><ul class="dropdown"><li><a href="committee-digital-lending.html">Digital Lending<small>DL-01</small></a></li><li><a href="committee-regtech.html">RegTech<small>RT-02</small></a></li><li><a href="committee-wealthtech.html">WealthTech<small>WT-03</small></a></li><li><a href="committee-insurtech.html">InsurTech<small>IT-04</small></a></li><li><a href="committee-credit-bureau.html">Credit Bureau<small>CB-05</small></a></li></ul></li><li><a href="members.html">Membership<svg class="chev" viewBox="0 0 10 10" fill="none" stroke="currentColor" stroke-width="1.6"><path d="M2 4l3 3 3-3"/></svg></a><ul class="dropdown"><li><a href="members.html">Our Members<small>175+ companies</small></a></li><li><a href="membership-benefits.html">Membership Benefits<small>What you get</small></a></li><li><a href="apply-membership.html">Apply for Membership<small>Join the council</small></a></li></ul></li><li><a href="partners.html">Partnership<svg class="chev" viewBox="0 0 10 10" fill="none" stroke="currentColor" stroke-width="1.6"><path d="M2 4l3 3 3-3"/></svg></a><ul class="dropdown"><li><a href="partners.html">Our Partners<small>Who we work with</small></a></li><li><a href="partnership-benefits.html">Partnership Benefits<small>Why partner with FCC</small></a></li><li><a href="apply-partnership.html">Apply for Partnership<small>Start a conversation</small></a></li></ul></li><li><a href="policy.html">Policy &amp; Research<svg class="chev" viewBox="0 0 10 10" fill="none" stroke="currentColor" stroke-width="1.6"><path d="M2 4l3 3 3-3"/></svg></a><ul class="dropdown"><li><a href="policy.html">Policy<small>Representations to regulators</small></a></li><li><a href="research.html">Research<small>Reports and whitepapers</small></a></li></ul></li><li><a href="live-events.html">Events<svg class="chev" viewBox="0 0 10 10" fill="none" stroke="currentColor" stroke-width="1.6"><path d="M2 4l3 3 3-3"/></svg></a><ul class="dropdown"><li><a href="live-events.html">Live Events<small>GFF and in-person events</small></a></li><li><a href="virtual-events.html">Virtual Events<small>Webinars and knowledge sessions</small></a></li></ul></li><li><a href="contact.html">Contact</a></li></ul></div></nav>
+</header>
+<main>
+<section class="hero grid-bg"><div class="wrap">
+<div><span class="pill"><i></i>The industry voice of Indian fintech</span>
+<h1>Where finance and technology <em>converge</em> to shape policy.</h1>
+<p>FCC brings together policymakers, regulators and 175+ fintech companies to build a fair policy environment and widen access to financial services across India.</p>
+<div class="actions"><a href="apply-membership.html" class="btn btn-light">Join the Council <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"/></svg></a><a href="policy.html" class="btn btn-ghost">See our policy work</a></div>
+<div class="hero-trust"><div><b>175+</b>member companies</div><div><b>5</b>sector committees</div><div><b>7</b>regulators engaged</div></div></div>
+<div class="hero-art"><svg class="net" viewBox="0 0 500 500" fill="none" aria-hidden="true"><circle cx="250" cy="250" r="232" stroke="rgba(255,255,255,.12)" stroke-dasharray="2 8"/><circle cx="250" cy="250" r="165" stroke="rgba(255,255,255,.28)" stroke-dasharray="4 6"><animateTransform attributeName="transform" type="rotate" from="0 250 250" to="360 250 250" dur="80s" repeatCount="indefinite"/></circle><circle cx="250" cy="250" r="96" stroke="rgba(255,255,255,.18)"/><circle cx="307.4" cy="25.2" r="4" fill="#fff" opacity=".7"/><text x="312.3" y="9.8" fill="rgba(255,255,255,.75)" font-family="JetBrains Mono,monospace" font-size="11" text-anchor="start">RBI</text><circle cx="461.5" cy="154.7" r="4" fill="#fff" opacity=".7"/><text x="479.8" y="150.5" fill="rgba(255,255,255,.75)" font-family="JetBrains Mono,monospace" font-size="11" text-anchor="start">SEBI</text><circle cx="456.4" cy="356.0" r="4" fill="#fff" opacity=".7"/><text x="474.2" y="369.1" fill="rgba(255,255,255,.75)" font-family="JetBrains Mono,monospace" font-size="11" text-anchor="start">IRDAI</text><circle cx="295.8" cy="477.4" r="4" fill="#fff" opacity=".7"/><text x="299.8" y="501.0" fill="rgba(255,255,255,.75)" font-family="JetBrains Mono,monospace" font-size="11" text-anchor="middle">NPCI</text><circle cx="100.8" cy="427.6" r="4" fill="#fff" opacity=".7"/><text x="87.9" y="446.9" fill="rgba(255,255,255,.75)" font-family="JetBrains Mono,monospace" font-size="11" text-anchor="end">MeitY</text><circle cx="18.1" cy="244.1" r="4" fill="#fff" opacity=".7"/><text x="-1.9" y="247.5" fill="rgba(255,255,255,.75)" font-family="JetBrains Mono,monospace" font-size="11" text-anchor="end">CERSAI</text><circle cx="110.0" cy="65.0" r="4" fill="#fff" opacity=".7"/><text x="98.0" y="53.0" fill="rgba(255,255,255,.75)" font-family="JetBrains Mono,monospace" font-size="11" text-anchor="end">IBBI</text><path id="p0" d="M250.0 85.0 L250 250" stroke="rgba(255,255,255,.35)" stroke-width="1.2"/><circle r="3.5" fill="#fff"><animateMotion dur="2.60s" repeatCount="indefinite" begin="-0.1s"><mpath href="#p0"/></animateMotion></circle><g><circle cx="250.0" cy="85.0" r="34" fill="rgba(255,255,255,.12)" stroke="rgba(255,255,255,.5)"/><circle cx="250.0" cy="85.0" r="34" stroke="#fff" stroke-opacity=".5"><animate attributeName="r" values="34;44;34" dur="4s" begin="0.0s" repeatCount="indefinite"/><animate attributeName="stroke-opacity" values=".5;0;.5" dur="4s" begin="0.0s" repeatCount="indefinite"/></circle><text x="250.0" y="89.0" fill="#fff" font-family="Plus Jakarta Sans,sans-serif" font-size="11.5" font-weight="700" text-anchor="middle">Lending</text></g><path id="p1" d="M392.9 167.5 L250 250" stroke="rgba(255,255,255,.35)" stroke-width="1.2"/><circle r="3.5" fill="#fff"><animateMotion dur="2.95s" repeatCount="indefinite" begin="-0.5s"><mpath href="#p1"/></animateMotion></circle><g><circle cx="392.9" cy="167.5" r="34" fill="rgba(255,255,255,.12)" stroke="rgba(255,255,255,.5)"/><circle cx="392.9" cy="167.5" r="34" stroke="#fff" stroke-opacity=".5"><animate attributeName="r" values="34;44;34" dur="4s" begin="0.6s" repeatCount="indefinite"/><animate attributeName="stroke-opacity" values=".5;0;.5" dur="4s" begin="0.6s" repeatCount="indefinite"/></circle><text x="392.9" y="171.5" fill="#fff" font-family="Plus Jakarta Sans,sans-serif" font-size="11.5" font-weight="700" text-anchor="middle">InsurTech</text></g><path id="p2" d="M392.9 332.5 L250 250" stroke="rgba(255,255,255,.35)" stroke-width="1.2"/><circle r="3.5" fill="#fff"><animateMotion dur="3.30s" repeatCount="indefinite" begin="-0.9s"><mpath href="#p2"/></animateMotion></circle><g><circle cx="392.9" cy="332.5" r="34" fill="rgba(255,255,255,.12)" stroke="rgba(255,255,255,.5)"/><circle cx="392.9" cy="332.5" r="34" stroke="#fff" stroke-opacity=".5"><animate attributeName="r" values="34;44;34" dur="4s" begin="1.2s" repeatCount="indefinite"/><animate attributeName="stroke-opacity" values=".5;0;.5" dur="4s" begin="1.2s" repeatCount="indefinite"/></circle><text x="392.9" y="336.5" fill="#fff" font-family="Plus Jakarta Sans,sans-serif" font-size="11.5" font-weight="700" text-anchor="middle">WealthTech</text></g><path id="p3" d="M250.0 415.0 L250 250" stroke="rgba(255,255,255,.35)" stroke-width="1.2"/><circle r="3.5" fill="#fff"><animateMotion dur="3.65s" repeatCount="indefinite" begin="-1.3s"><mpath href="#p3"/></animateMotion></circle><g><circle cx="250.0" cy="415.0" r="34" fill="rgba(255,255,255,.12)" stroke="rgba(255,255,255,.5)"/><circle cx="250.0" cy="415.0" r="34" stroke="#fff" stroke-opacity=".5"><animate attributeName="r" values="34;44;34" dur="4s" begin="1.8s" repeatCount="indefinite"/><animate attributeName="stroke-opacity" values=".5;0;.5" dur="4s" begin="1.8s" repeatCount="indefinite"/></circle><text x="250.0" y="419.0" fill="#fff" font-family="Plus Jakarta Sans,sans-serif" font-size="11.5" font-weight="700" text-anchor="middle">RegTech</text></g><path id="p4" d="M107.1 332.5 L250 250" stroke="rgba(255,255,255,.35)" stroke-width="1.2"/><circle r="3.5" fill="#fff"><animateMotion dur="4.00s" repeatCount="indefinite" begin="-1.7s"><mpath href="#p4"/></animateMotion></circle><g><circle cx="107.1" cy="332.5" r="34" fill="rgba(255,255,255,.12)" stroke="rgba(255,255,255,.5)"/><circle cx="107.1" cy="332.5" r="34" stroke="#fff" stroke-opacity=".5"><animate attributeName="r" values="34;44;34" dur="4s" begin="2.4s" repeatCount="indefinite"/><animate attributeName="stroke-opacity" values=".5;0;.5" dur="4s" begin="2.4s" repeatCount="indefinite"/></circle><text x="107.1" y="336.5" fill="#fff" font-family="Plus Jakarta Sans,sans-serif" font-size="11.5" font-weight="700" text-anchor="middle">Bureaus</text></g><path id="p5" d="M107.1 167.5 L250 250" stroke="rgba(255,255,255,.35)" stroke-width="1.2"/><circle r="3.5" fill="#fff"><animateMotion dur="4.35s" repeatCount="indefinite" begin="-2.1s"><mpath href="#p5"/></animateMotion></circle><g><circle cx="107.1" cy="167.5" r="34" fill="rgba(255,255,255,.12)" stroke="rgba(255,255,255,.5)"/><circle cx="107.1" cy="167.5" r="34" stroke="#fff" stroke-opacity=".5"><animate attributeName="r" values="34;44;34" dur="4s" begin="3.0s" repeatCount="indefinite"/><animate attributeName="stroke-opacity" values=".5;0;.5" dur="4s" begin="3.0s" repeatCount="indefinite"/></circle><text x="107.1" y="171.5" fill="#fff" font-family="Plus Jakarta Sans,sans-serif" font-size="11.5" font-weight="700" text-anchor="middle">Payments</text></g><circle cx="250" cy="250" r="62" fill="#fff"/><circle cx="250" cy="250" r="70" stroke="#fff" stroke-opacity=".4"/><text x="250" y="248" fill="#BF1A1F" font-family="Plus Jakarta Sans,sans-serif" font-size="26" font-weight="800" text-anchor="middle">FCC</text><text x="250" y="268" fill="#7B7D7C" font-family="JetBrains Mono,monospace" font-size="8.5" text-anchor="middle" letter-spacing="1.5">CONVERGENCE</text></svg>
+<div class="float f1"><div class="row"><span class="tick">✓</span><div><div class="k">Representation</div><b>Submitted to RBI</b></div></div></div>
+<div class="float f2"><div class="k">Digital lending · trend</div><b>Policy momentum</b><svg class="spark" width="110" height="30" viewBox="0 0 110 30" fill="none"><polyline points="0.0,28.0 13.8,23.3 27.5,25.6 41.2,18.5 55.0,20.9 68.8,13.8 82.5,9.1 96.2,11.5 110.0,2.0" stroke="#BF1A1F" stroke-width="2" stroke-linejoin="round"/><polyline points="0,30 0.0,28.0 13.8,23.3 27.5,25.6 41.2,18.5 55.0,20.9 68.8,13.8 82.5,9.1 96.2,11.5 110.0,2.0 110,30" fill="#BF1A1F" opacity=".08"/></svg></div>
+<div class="float f3"><div class="row"><span class="tick" style="background:var(--red-soft);color:var(--red)"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="3" y="6" width="13" height="12" rx="2"/><path d="M16 10l5-3v10l-5-3"/></svg></span><div><div class="k">Next session</div><b>Knowledge webinar</b></div></div></div>
+</div></div></section>
+<div class="ticker" aria-hidden="true"><div class="ticker-track"><span>UPI</span><span>Account Aggregator</span><span>OCEN</span><span>ONDC</span><span>DPDP Act</span><span>CKYC</span><span>Digital Lending</span><span>Co-Lending</span><span>e-KYC Setu</span><span>Bima Sugam</span><span>T+0 Settlement</span><span>AML / CFT</span><span>GIFT IFSC</span><span>DIGIPIN</span><span>Video-KYC</span><span>FLDG</span><span>UPI</span><span>Account Aggregator</span><span>OCEN</span><span>ONDC</span><span>DPDP Act</span><span>CKYC</span><span>Digital Lending</span><span>Co-Lending</span><span>e-KYC Setu</span><span>Bima Sugam</span><span>T+0 Settlement</span><span>AML / CFT</span><span>GIFT IFSC</span><span>DIGIPIN</span><span>Video-KYC</span><span>FLDG</span></div></div>
+
+<div class="stats"><div class="wrap"><div class="grid">
+<div class="stat"><b>175<sup>+</sup></b><span>Member companies</span><i class="bar" style="--p:88%"></i></div>
+<div class="stat"><b>5</b><span>Sector committees</span><i class="bar" style="--p:50%"></i></div>
+<div class="stat"><b>43<sup>+</sup></b><span>Representations &amp; sessions</span><i class="bar" style="--p:70%"></i></div>
+<div class="stat"><b>38</b><span>Virtual sessions since 2024</span><i class="bar" style="--p:62%"></i></div>
+</div></div></div>
+
+<section><div class="wrap split">
+<div class="reveal"><span class="eyebrow">About FCC</span><h2>The next phase of fintech growth comes from working together.</h2>
+<p class="lead">FCC started as IAMAI's fintech committee and launched as the Fintech Convergence Council in 2018. Today it brings banks, NBFCs, insurers, investment platforms and fintechs into one room, and carries their shared view to regulators.</p>
+<div style="margin-top:26px;display:flex;gap:12px;flex-wrap:wrap"><a href="about.html" class="btn btn-outline">About us</a><a href="annual-report.html" class="btn btn-outline">Annual reports</a></div></div>
+<div class="bridge reveal"><svg viewBox="0 0 760 360" fill="none" font-family="Plus Jakarta Sans,sans-serif" aria-label="FCC connects industry with regulators"><text x="90" y="24" fill="#7B7D7C" font-family="JetBrains Mono" font-size="11" text-anchor="middle" letter-spacing="1.5">INDUSTRY</text><text x="670" y="24" fill="#7B7D7C" font-family="JetBrains Mono" font-size="11" text-anchor="middle" letter-spacing="1.5">REGULATORS &amp; GOVT</text><rect x="10" y="46" width="160" height="36" rx="18" fill="#F5F5F5" stroke="#E6E6E6"/><text x="90" y="69" fill="#222" font-size="13" font-weight="600" text-anchor="middle">Banks</text><path id="bl0" d="M170 64 C 250 64, 250 180, 310 180" stroke="#E5B9BA" stroke-width="1.5"/><circle r="3.5" fill="#BF1A1F"><animateMotion dur="2.4s" repeatCount="indefinite" begin="-0.1s"><mpath href="#bl0"/></animateMotion></circle><rect x="10" y="96" width="160" height="36" rx="18" fill="#F5F5F5" stroke="#E6E6E6"/><text x="90" y="119" fill="#222" font-size="13" font-weight="600" text-anchor="middle">NBFCs</text><path id="bl1" d="M170 114 C 250 114, 250 180, 310 180" stroke="#E5B9BA" stroke-width="1.5"/><circle r="3.5" fill="#BF1A1F"><animateMotion dur="2.6s" repeatCount="indefinite" begin="-0.4s"><mpath href="#bl1"/></animateMotion></circle><rect x="10" y="146" width="160" height="36" rx="18" fill="#F5F5F5" stroke="#E6E6E6"/><text x="90" y="169" fill="#222" font-size="13" font-weight="600" text-anchor="middle">Fintechs</text><path id="bl2" d="M170 164 C 250 164, 250 180, 310 180" stroke="#E5B9BA" stroke-width="1.5"/><circle r="3.5" fill="#BF1A1F"><animateMotion dur="2.8s" repeatCount="indefinite" begin="-0.7s"><mpath href="#bl2"/></animateMotion></circle><rect x="10" y="196" width="160" height="36" rx="18" fill="#F5F5F5" stroke="#E6E6E6"/><text x="90" y="219" fill="#222" font-size="13" font-weight="600" text-anchor="middle">Insurers</text><path id="bl3" d="M170 214 C 250 214, 250 180, 310 180" stroke="#E5B9BA" stroke-width="1.5"/><circle r="3.5" fill="#BF1A1F"><animateMotion dur="3.0s" repeatCount="indefinite" begin="-1.0s"><mpath href="#bl3"/></animateMotion></circle><rect x="10" y="246" width="160" height="36" rx="18" fill="#F5F5F5" stroke="#E6E6E6"/><text x="90" y="269" fill="#222" font-size="13" font-weight="600" text-anchor="middle">AMCs & brokers</text><path id="bl4" d="M170 264 C 250 264, 250 180, 310 180" stroke="#E5B9BA" stroke-width="1.5"/><circle r="3.5" fill="#BF1A1F"><animateMotion dur="3.2s" repeatCount="indefinite" begin="-1.3s"><mpath href="#bl4"/></animateMotion></circle><rect x="10" y="296" width="160" height="36" rx="18" fill="#F5F5F5" stroke="#E6E6E6"/><text x="90" y="319" fill="#222" font-size="13" font-weight="600" text-anchor="middle">Bureaus</text><path id="bl5" d="M170 314 C 250 314, 250 180, 310 180" stroke="#E5B9BA" stroke-width="1.5"/><circle r="3.5" fill="#BF1A1F"><animateMotion dur="3.4s" repeatCount="indefinite" begin="-1.6s"><mpath href="#bl5"/></animateMotion></circle><rect x="590" y="40" width="160" height="32" rx="8" fill="#fff" stroke="#222" stroke-width="1.5"/><text x="670" y="61" fill="#222" font-size="13" font-weight="700" text-anchor="middle">RBI</text><path id="br0" d="M450 180 C 520 180, 520 56, 590 56" stroke="#E5B9BA" stroke-width="1.5"/><circle r="3.5" fill="#222"><animateMotion dur="2.6s" repeatCount="indefinite" begin="-0.1s" keyPoints="1;0" keyTimes="0;1" calcMode="linear"><mpath href="#br0"/></animateMotion></circle><rect x="590" y="84" width="160" height="32" rx="8" fill="#fff" stroke="#222" stroke-width="1.5"/><text x="670" y="105" fill="#222" font-size="13" font-weight="700" text-anchor="middle">SEBI</text><path id="br1" d="M450 180 C 520 180, 520 100, 590 100" stroke="#E5B9BA" stroke-width="1.5"/><circle r="3.5" fill="#222"><animateMotion dur="2.8s" repeatCount="indefinite" begin="-0.3s" keyPoints="1;0" keyTimes="0;1" calcMode="linear"><mpath href="#br1"/></animateMotion></circle><rect x="590" y="128" width="160" height="32" rx="8" fill="#fff" stroke="#222" stroke-width="1.5"/><text x="670" y="149" fill="#222" font-size="13" font-weight="700" text-anchor="middle">IRDAI</text><path id="br2" d="M450 180 C 520 180, 520 144, 590 144" stroke="#E5B9BA" stroke-width="1.5"/><circle r="3.5" fill="#222"><animateMotion dur="3.0s" repeatCount="indefinite" begin="-0.6s" keyPoints="1;0" keyTimes="0;1" calcMode="linear"><mpath href="#br2"/></animateMotion></circle><rect x="590" y="172" width="160" height="32" rx="8" fill="#fff" stroke="#222" stroke-width="1.5"/><text x="670" y="193" fill="#222" font-size="13" font-weight="700" text-anchor="middle">NPCI</text><path id="br3" d="M450 180 C 520 180, 520 188, 590 188" stroke="#E5B9BA" stroke-width="1.5"/><circle r="3.5" fill="#222"><animateMotion dur="3.2s" repeatCount="indefinite" begin="-0.8s" keyPoints="1;0" keyTimes="0;1" calcMode="linear"><mpath href="#br3"/></animateMotion></circle><rect x="590" y="216" width="160" height="32" rx="8" fill="#fff" stroke="#222" stroke-width="1.5"/><text x="670" y="237" fill="#222" font-size="13" font-weight="700" text-anchor="middle">MeitY</text><path id="br4" d="M450 180 C 520 180, 520 232, 590 232" stroke="#E5B9BA" stroke-width="1.5"/><circle r="3.5" fill="#222"><animateMotion dur="3.4s" repeatCount="indefinite" begin="-1.1s" keyPoints="1;0" keyTimes="0;1" calcMode="linear"><mpath href="#br4"/></animateMotion></circle><rect x="590" y="260" width="160" height="32" rx="8" fill="#fff" stroke="#222" stroke-width="1.5"/><text x="670" y="281" fill="#222" font-size="13" font-weight="700" text-anchor="middle">CERSAI</text><path id="br5" d="M450 180 C 520 180, 520 276, 590 276" stroke="#E5B9BA" stroke-width="1.5"/><circle r="3.5" fill="#222"><animateMotion dur="3.6s" repeatCount="indefinite" begin="-1.4s" keyPoints="1;0" keyTimes="0;1" calcMode="linear"><mpath href="#br5"/></animateMotion></circle><rect x="590" y="304" width="160" height="32" rx="8" fill="#fff" stroke="#222" stroke-width="1.5"/><text x="670" y="325" fill="#222" font-size="13" font-weight="700" text-anchor="middle">IBBI</text><path id="br6" d="M450 180 C 520 180, 520 320, 590 320" stroke="#E5B9BA" stroke-width="1.5"/><circle r="3.5" fill="#222"><animateMotion dur="3.8s" repeatCount="indefinite" begin="-1.6s" keyPoints="1;0" keyTimes="0;1" calcMode="linear"><mpath href="#br6"/></animateMotion></circle><rect x="310" y="120" width="140" height="120" rx="20" fill="#BF1A1F"/><text x="380" y="176" fill="#fff" font-size="26" font-weight="800" text-anchor="middle">FCC</text><text x="380" y="198" fill="#FBE3E3" font-family="JetBrains Mono" font-size="9.5" text-anchor="middle" letter-spacing="1">ONE INDUSTRY VOICE</text><text x="240" y="340" fill="#BF1A1F" font-family="JetBrains Mono" font-size="11" text-anchor="middle">● inputs &amp; positions →</text><text x="520" y="340" fill="#222" font-family="JetBrains Mono" font-size="11" text-anchor="middle">← consultations &amp; clarity ●</text></svg></div>
+</div></section>
+
+<section class="bg-soft"><div class="wrap">
+<div class="sec-head"><div><span class="eyebrow">Committees</span><h2>Five committees, one shared agenda</h2><p class="lead">Each committee leads the council's work in a fast-moving part of financial services.</p></div><a href="committees.html" class="btn btn-outline">All committees</a></div>
+<div class="cards5 reveal"><a href="committee-digital-lending.html" class="ccard"><span class="code">DL-01</span><div class="icon-box"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="3" y="6" width="18" height="12" rx="2"/><path d="M3 10h18M7 15h3"/></svg></div><h3>Digital Lending</h3><p>Growth and fair regulation for P2P, SME, personal and other digital lending.</p><div class="chair"><b>Vibhav Hathi</b>Chair · Co-Founder, OneCard</div></a><a href="committee-regtech.html" class="ccard"><span class="code">RT-02</span><div class="icon-box"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="5" y="11" width="14" height="10" rx="2"/><path d="M8 11V7a4 4 0 0 1 8 0v4M12 15v2"/></svg></div><h3>RegTech</h3><p>KYC, AML, data protection and cyber resilience for the compliance tech ecosystem.</p><div class="chair"><b>Ajay Rajan</b>Chair · MD &amp; CEO, Protean e-Gov</div></a><a href="committee-wealthtech.html" class="ccard"><span class="code">WT-03</span><div class="icon-box"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M3 17l6-6 4 4 8-8M15 7h6v6"/></svg></div><h3>WealthTech</h3><p>Investor access, mutual funds, settlement and onboarding across India&#x27;s investments ecosystem.</p><div class="chair"><b>Srinivas Jain</b>Chair · Executive Director, SBI Funds</div></a><a href="committee-insurtech.html" class="ccard"><span class="code">IT-04</span><div class="icon-box"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 3l8 3v6c0 5-3.5 8-8 9-4.5-1-8-4-8-9V6z"/><path d="M9 12l2 2 4-4"/></svg></div><h3>InsurTech</h3><p>Life, general and health insurance, and aggregators, in a digital-first market.</p><div class="chair"><b>Sarbvir Singh</b>Chair · Joint Group CEO, PB Fintech</div></a><a href="committee-credit-bureau.html" class="ccard"><span class="code">CB-05</span><div class="icon-box"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><ellipse cx="12" cy="6" rx="8" ry="3"/><path d="M4 6v6c0 1.7 3.6 3 8 3s8-1.3 8-3V6M4 12v6c0 1.7 3.6 3 8 3s8-1.3 8-3v-6"/></svg></div><h3>Credit Bureau</h3><p>Credit information, inclusion and prudent lending through advocacy.</p><div class="chair"><b>Open for nominations</b>Chair to be announced</div></a></div>
+</div></section>
+
+<section><div class="wrap">
+<div class="sec-head"><div><span class="eyebrow">How we work</span><h2>From member input to policy outcome</h2></div></div>
+<div class="flow reveal">
+<div class="step"><div class="dot"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="9" cy="8" r="3"/><circle cx="17" cy="10" r="2.5"/><path d="M3 20c0-3.3 2.7-6 6-6s6 2.7 6 6M14 20c0-2.5 1.5-4.5 3-4.5S21 17.5 21 20"/></svg></div><h4>Listen</h4><p>Committees surface the issues members face on the ground.</p></div>
+<div class="step"><div class="dot"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 3l9 5-9 5-9-5zM3 13l9 5 9-5"/></svg></div><h4>Consolidate</h4><p>We build one industry position from many voices.</p></div>
+<div class="step"><div class="dot"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M3 11v2a2 2 0 0 0 2 2h2l5 4V5L7 9H5a2 2 0 0 0-2 2zM16 8a5 5 0 0 1 0 8"/></svg></div><h4>Represent</h4><p>Submissions and consultations with regulators and government.</p></div>
+<div class="step"><div class="dot"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4 19V5a2 2 0 0 1 2-2h12v18H6a2 2 0 0 1-2-2zM8 7h6M8 11h6"/></svg></div><h4>Inform</h4><p>Webinars and reports bring the outcome back to members.</p></div>
+</div></div></section>
+
+<section class="bg-soft"><div class="wrap">
+<div class="sec-head"><div><span class="eyebrow">What's happening</span><h2>Our policy work</h2><p class="lead">Recent representations, industry feedback and knowledge sessions. Filter by regulator.</p></div><a href="policy.html" class="btn btn-outline">Policy hub</a></div>
+<div class="filters" data-filter-for="tracker"><button class="chip active" data-f="all">All<span class="n">32</span></button><button class="chip" data-f="RBI">RBI<span class="n">11</span></button><button class="chip" data-f="SEBI">SEBI<span class="n">3</span></button><button class="chip" data-f="IRDAI">IRDAI<span class="n">6</span></button><button class="chip" data-f="NPCI">NPCI<span class="n">2</span></button><button class="chip" data-f="MeitY">MeitY<span class="n">1</span></button><button class="chip" data-f="CERSAI">CERSAI<span class="n">1</span></button><button class="chip" data-f="IBBI">IBBI<span class="n">1</span></button><button class="chip" data-f="Session">Knowledge sessions<span class="n">7</span></button></div><div class="tracker" id="tracker" data-limit="9"><div class="sub" data-r="RBI lend"><div class="top"><span class="tag">RBI</span><span class="status">Submitted</span></div><h4>PAN verification access for Lending Service Providers</h4></div><div class="sub" data-r="RBI reg"><div class="top"><span class="tag">RBI</span><span class="status">Submitted</span></div><h4>Feedback on the draft omnibus framework for recognising SROs for regulated entities</h4></div><div class="sub" data-r="CERSAI reg"><div class="top"><span class="tag">CERSAI</span><span class="status">Submitted</span></div><h4>Improving the quality of KYC data in C-KYCR</h4></div><div class="sub" data-r="SEBI wealth"><div class="top"><span class="tag">SEBI</span><span class="status">Submitted</span></div><h4>Industry feedback on T+0 settlement</h4></div><div class="sub" data-r="IBBI lend"><div class="top"><span class="tag">IBBI</span><span class="status">Submitted</span></div><h4>Submission of information for unsecured loans</h4></div><div class="sub" data-r="RBI reg lend"><div class="top"><span class="tag">RBI</span><span class="status">Submitted</span></div><h4>Simplification of KYC for MSMEs</h4></div><div class="sub" data-r="NPCI lend"><div class="top"><span class="tag">NPCI</span><span class="status">Submitted</span></div><h4>UPI mandate and UPI AutoPay</h4></div><div class="sub" data-r="NPCI lend"><div class="top"><span class="tag">NPCI</span><span class="status">Submitted</span></div><h4>Streamlining e-mandate registration for MSMEs</h4></div><div class="sub" data-r="RBI lend"><div class="top"><span class="tag">RBI</span><span class="status">Submitted</span></div><h4>Aggregation of loan products from multiple lenders</h4></div><div class="sub" data-r="IRDAI insur"><div class="top"><span class="tag">IRDAI</span><span class="status">Submitted</span></div><h4>Industry representation on insurance literacy</h4></div><div class="sub" data-r="SEBI wealth"><div class="top"><span class="tag">SEBI</span><span class="status">Submitted</span></div><h4>New PAN verification system deadline</h4></div><div class="sub" data-r="RBI reg"><div class="top"><span class="tag">RBI</span><span class="status">Submitted</span></div><h4>Proposal to introduce Self-V-CIP</h4></div><div class="sub" data-r="RBI lend"><div class="top"><span class="tag">RBI</span><span class="status">Submitted</span></div><h4>Suggestions on gold loans</h4></div><div class="sub" data-r="RBI lend"><div class="top"><span class="tag">RBI</span><span class="status">Submitted</span></div><h4>Impact of recent regulations on the securitisation market</h4></div><div class="sub" data-r="RBI lend"><div class="top"><span class="tag">RBI</span><span class="status">Submitted</span></div><h4>Digital lending guidelines: direct disbursal of funds</h4></div><div class="sub" data-r="SEBI wealth"><div class="top"><span class="tag">SEBI</span><span class="status">Submitted</span></div><h4>Blocking of funds for trading in the secondary market (2023)</h4></div><div class="sub" data-r="MeitY reg"><div class="top"><span class="tag">MeitY</span><span class="status">Submitted</span></div><h4>Discussion on the Digital Personal Data Protection Bill, 2022</h4></div><div class="sub" data-r="IRDAI insur"><div class="top"><span class="tag">IRDAI</span><span class="status">Submitted</span></div><h4>Draft IRDAI (Bima Sugam Insurance E-Marketplace) Regulations, 2024</h4></div><div class="sub" data-r="IRDAI insur"><div class="top"><span class="tag">IRDAI</span><span class="status">Submitted</span></div><h4>Representation on Bima Vahak guidelines</h4></div><div class="sub" data-r="IRDAI bureau"><div class="top"><span class="tag">IRDAI</span><span class="status">Submitted</span></div><h4>Support for CICs on overlaps between the CIC (Regulation) Act, 2005 and the DPDPA</h4></div><div class="sub" data-r="RBI reg"><div class="top"><span class="tag">RBI</span><span class="status">Submitted</span></div><h4>Cyber resilience and digital payment security controls for PSOs</h4></div><div class="sub" data-r="IRDAI insur"><div class="top"><span class="tag">IRDAI</span><span class="status">Submitted</span></div><h4>Access to IIB data for insurance intermediaries</h4></div><div class="sub" data-r="IRDAI insur"><div class="top"><span class="tag">IRDAI</span><span class="status">Submitted</span></div><h4>ISNP: digital advertising</h4></div><div class="sub" data-r="RBI lend"><div class="top"><span class="tag">RBI</span><span class="status">Submitted</span></div><h4>FLDG on KCC lending</h4></div><div class="sub" data-r="RBI lend"><div class="top"><span class="tag">RBI</span><span class="status">Submitted</span></div><h4>Access to data ecosystem for AgriFintech</h4></div><div class="sub" data-r="Session reg"><div class="top"><span class="tag g">Masterclass</span><span class="status">Held</span></div><h4>Masterclass: DPDP and its impact across the fintech ecosystem</h4></div><div class="sub" data-r="Session lend"><div class="top"><span class="tag g">Webinar</span><span class="status">Held</span></div><h4>Empowering MSMEs: OCEN in lending&#x27;s digital transformation</h4></div><div class="sub" data-r="Session lend"><div class="top"><span class="tag g">Workshop</span><span class="status">Held</span></div><h4>Account Aggregator as a growth accelerator for lending, with Sahamati</h4></div><div class="sub" data-r="Session insur reg"><div class="top"><span class="tag g">Webinar</span><span class="status">Held</span></div><h4>Impact of the DPDP Act, 2023 on the insurance sector</h4></div><div class="sub" data-r="Session wealth"><div class="top"><span class="tag g">Webinar</span><span class="status">Held</span></div><h4>Financial services and gift cards on ONDC</h4></div><div class="sub" data-r="Session reg"><div class="top"><span class="tag g">Roundtable</span><span class="status">Held</span></div><h4>Roundtable on the proposed IFSCA (Payment Services) Regulations</h4></div><div class="sub" data-r="Session lend"><div class="top"><span class="tag g">Outreach</span><span class="status">Held</span></div><h4>NPCI Fintech Outreach Programme, with PCI</h4></div></div>
+<div class="center mt-28"><button class="btn btn-outline" data-more-for="tracker">Show all</button></div>
+</div></section>
+
+<section class="dark"><div class="wrap">
+<div class="sec-head"><div><span class="eyebrow">Events</span><h2>Where the ecosystem meets</h2><p class="lead">FCC co-hosts the Global Fintech Fest and runs a year-round calendar of virtual knowledge sessions.</p></div><a href="live-events.html" class="btn btn-ghost">All events</a></div>
+<div class="ev-grid reveal">
+<a href="https://globalfintechfest.com/" target="_blank" rel="noopener" class="ev-feature"><div class="bg-art"><svg class="net" viewBox="0 0 500 500" fill="none" aria-hidden="true"><circle cx="250" cy="250" r="232" stroke="rgba(255,255,255,.12)" stroke-dasharray="2 8"/><circle cx="250" cy="250" r="165" stroke="rgba(255,255,255,.28)" stroke-dasharray="4 6"><animateTransform attributeName="transform" type="rotate" from="0 250 250" to="360 250 250" dur="80s" repeatCount="indefinite"/></circle><circle cx="250" cy="250" r="96" stroke="rgba(255,255,255,.18)"/><circle cx="307.4" cy="25.2" r="4" fill="#fff" opacity=".7"/><text x="312.3" y="9.8" fill="rgba(255,255,255,.75)" font-family="JetBrains Mono,monospace" font-size="11" text-anchor="start">RBI</text><circle cx="461.5" cy="154.7" r="4" fill="#fff" opacity=".7"/><text x="479.8" y="150.5" fill="rgba(255,255,255,.75)" font-family="JetBrains Mono,monospace" font-size="11" text-anchor="start">SEBI</text><circle cx="456.4" cy="356.0" r="4" fill="#fff" opacity=".7"/><text x="474.2" y="369.1" fill="rgba(255,255,255,.75)" font-family="JetBrains Mono,monospace" font-size="11" text-anchor="start">IRDAI</text><circle cx="295.8" cy="477.4" r="4" fill="#fff" opacity=".7"/><text x="299.8" y="501.0" fill="rgba(255,255,255,.75)" font-family="JetBrains Mono,monospace" font-size="11" text-anchor="middle">NPCI</text><circle cx="100.8" cy="427.6" r="4" fill="#fff" opacity=".7"/><text x="87.9" y="446.9" fill="rgba(255,255,255,.75)" font-family="JetBrains Mono,monospace" font-size="11" text-anchor="end">MeitY</text><circle cx="18.1" cy="244.1" r="4" fill="#fff" opacity=".7"/><text x="-1.9" y="247.5" fill="rgba(255,255,255,.75)" font-family="JetBrains Mono,monospace" font-size="11" text-anchor="end">CERSAI</text><circle cx="110.0" cy="65.0" r="4" fill="#fff" opacity=".7"/><text x="98.0" y="53.0" fill="rgba(255,255,255,.75)" font-family="JetBrains Mono,monospace" font-size="11" text-anchor="end">IBBI</text><path id="p0" d="M250.0 85.0 L250 250" stroke="rgba(255,255,255,.35)" stroke-width="1.2"/><circle r="3.5" fill="#fff"><animateMotion dur="2.60s" repeatCount="indefinite" begin="-0.1s"><mpath href="#p0"/></animateMotion></circle><g><circle cx="250.0" cy="85.0" r="34" fill="rgba(255,255,255,.12)" stroke="rgba(255,255,255,.5)"/><circle cx="250.0" cy="85.0" r="34" stroke="#fff" stroke-opacity=".5"><animate attributeName="r" values="34;44;34" dur="4s" begin="0.0s" repeatCount="indefinite"/><animate attributeName="stroke-opacity" values=".5;0;.5" dur="4s" begin="0.0s" repeatCount="indefinite"/></circle><text x="250.0" y="89.0" fill="#fff" font-family="Plus Jakarta Sans,sans-serif" font-size="11.5" font-weight="700" text-anchor="middle">Lending</text></g><path id="p1" d="M392.9 167.5 L250 250" stroke="rgba(255,255,255,.35)" stroke-width="1.2"/><circle r="3.5" fill="#fff"><animateMotion dur="2.95s" repeatCount="indefinite" begin="-0.5s"><mpath href="#p1"/></animateMotion></circle><g><circle cx="392.9" cy="167.5" r="34" fill="rgba(255,255,255,.12)" stroke="rgba(255,255,255,.5)"/><circle cx="392.9" cy="167.5" r="34" stroke="#fff" stroke-opacity=".5"><animate attributeName="r" values="34;44;34" dur="4s" begin="0.6s" repeatCount="indefinite"/><animate attributeName="stroke-opacity" values=".5;0;.5" dur="4s" begin="0.6s" repeatCount="indefinite"/></circle><text x="392.9" y="171.5" fill="#fff" font-family="Plus Jakarta Sans,sans-serif" font-size="11.5" font-weight="700" text-anchor="middle">InsurTech</text></g><path id="p2" d="M392.9 332.5 L250 250" stroke="rgba(255,255,255,.35)" stroke-width="1.2"/><circle r="3.5" fill="#fff"><animateMotion dur="3.30s" repeatCount="indefinite" begin="-0.9s"><mpath href="#p2"/></animateMotion></circle><g><circle cx="392.9" cy="332.5" r="34" fill="rgba(255,255,255,.12)" stroke="rgba(255,255,255,.5)"/><circle cx="392.9" cy="332.5" r="34" stroke="#fff" stroke-opacity=".5"><animate attributeName="r" values="34;44;34" dur="4s" begin="1.2s" repeatCount="indefinite"/><animate attributeName="stroke-opacity" values=".5;0;.5" dur="4s" begin="1.2s" repeatCount="indefinite"/></circle><text x="392.9" y="336.5" fill="#fff" font-family="Plus Jakarta Sans,sans-serif" font-size="11.5" font-weight="700" text-anchor="middle">WealthTech</text></g><path id="p3" d="M250.0 415.0 L250 250" stroke="rgba(255,255,255,.35)" stroke-width="1.2"/><circle r="3.5" fill="#fff"><animateMotion dur="3.65s" repeatCount="indefinite" begin="-1.3s"><mpath href="#p3"/></animateMotion></circle><g><circle cx="250.0" cy="415.0" r="34" fill="rgba(255,255,255,.12)" stroke="rgba(255,255,255,.5)"/><circle cx="250.0" cy="415.0" r="34" stroke="#fff" stroke-opacity=".5"><animate attributeName="r" values="34;44;34" dur="4s" begin="1.8s" repeatCount="indefinite"/><animate attributeName="stroke-opacity" values=".5;0;.5" dur="4s" begin="1.8s" repeatCount="indefinite"/></circle><text x="250.0" y="419.0" fill="#fff" font-family="Plus Jakarta Sans,sans-serif" font-size="11.5" font-weight="700" text-anchor="middle">RegTech</text></g><path id="p4" d="M107.1 332.5 L250 250" stroke="rgba(255,255,255,.35)" stroke-width="1.2"/><circle r="3.5" fill="#fff"><animateMotion dur="4.00s" repeatCount="indefinite" begin="-1.7s"><mpath href="#p4"/></animateMotion></circle><g><circle cx="107.1" cy="332.5" r="34" fill="rgba(255,255,255,.12)" stroke="rgba(255,255,255,.5)"/><circle cx="107.1" cy="332.5" r="34" stroke="#fff" stroke-opacity=".5"><animate attributeName="r" values="34;44;34" dur="4s" begin="2.4s" repeatCount="indefinite"/><animate attributeName="stroke-opacity" values=".5;0;.5" dur="4s" begin="2.4s" repeatCount="indefinite"/></circle><text x="107.1" y="336.5" fill="#fff" font-family="Plus Jakarta Sans,sans-serif" font-size="11.5" font-weight="700" text-anchor="middle">Bureaus</text></g><path id="p5" d="M107.1 167.5 L250 250" stroke="rgba(255,255,255,.35)" stroke-width="1.2"/><circle r="3.5" fill="#fff"><animateMotion dur="4.35s" repeatCount="indefinite" begin="-2.1s"><mpath href="#p5"/></animateMotion></circle><g><circle cx="107.1" cy="167.5" r="34" fill="rgba(255,255,255,.12)" stroke="rgba(255,255,255,.5)"/><circle cx="107.1" cy="167.5" r="34" stroke="#fff" stroke-opacity=".5"><animate attributeName="r" values="34;44;34" dur="4s" begin="3.0s" repeatCount="indefinite"/><animate attributeName="stroke-opacity" values=".5;0;.5" dur="4s" begin="3.0s" repeatCount="indefinite"/></circle><text x="107.1" y="171.5" fill="#fff" font-family="Plus Jakarta Sans,sans-serif" font-size="11.5" font-weight="700" text-anchor="middle">Payments</text></g><circle cx="250" cy="250" r="62" fill="#fff"/><circle cx="250" cy="250" r="70" stroke="#fff" stroke-opacity=".4"/><text x="250" y="248" fill="#BF1A1F" font-family="Plus Jakarta Sans,sans-serif" font-size="26" font-weight="800" text-anchor="middle">FCC</text><text x="250" y="268" fill="#7B7D7C" font-family="JetBrains Mono,monospace" font-size="8.5" text-anchor="middle" letter-spacing="1.5">CONVERGENCE</text></svg></div><div style="position:relative"><small>Flagship event</small><h3>Global Fintech Fest</h3><p style="max-width:420px;opacity:.92">One of the world's largest fintech gatherings, bringing regulators, banks, fintechs and investors together in Mumbai every year.</p></div><div class="meta"><span>📍 Jio World Centre, Mumbai</span><span>Visit website →</span></div></a>
+<div class="ev-list"><a href="https://globalfintechfest.com/" class="ev-item"><div class="ev-date"><b>2025</b><span>12–16 May</span></div><div><h4>Mission Trip to Japan</h4><p>Tokyo, Japan</p></div></a><a href="live-events.html" class="ev-item"><div class="ev-date"><b>2024</b><span>19 Dec</span></div><div><h4>India&#x27;s Innovation for the World</h4><p>India</p></div></a><a href="https://globalfintechfest.com/" class="ev-item"><div class="ev-date"><b>2024</b><span>28–30 Aug</span></div><div><h4>Global Fintech Fest 2024</h4><p>Jio World Centre, Mumbai</p></div></a><a href="https://globalfintechfest.com/2023/" class="ev-item"><div class="ev-date"><b>2023</b><span>5–7 Sep</span></div><div><h4>Global Fintech Fest 2023</h4><p>Jio World Centre, Mumbai</p></div></a></div>
+</div>
+<div style="margin-top:44px" class="sec-head"><div><span class="eyebrow">Latest knowledge sessions</span></div><a href="virtual-events.html" class="link-arrow" style="color:#fff">All 38 sessions <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"/></svg></a></div>
+<div class="web-grid reveal"><div class="web" data-r="y2026"><div class="wtop"><div><div class="d">02</div><div class="m">Apr 2026</div></div><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="3" y="6" width="13" height="12" rx="2"/><path d="M16 10l5-3v10l-5-3"/></svg></div><div class="wbody"><h4>Role of AI in transforming insurance processing</h4><span class="time">3:30–4:30 PM IST · Virtual</span></div></div><div class="web" data-r="y2026"><div class="wtop"><div><div class="d">17</div><div class="m">Mar 2026</div></div><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="3" y="6" width="13" height="12" rx="2"/><path d="M16 10l5-3v10l-5-3"/></svg></div><div class="wbody"><h4>Alternative Investment Funds in India: FY 2025 in review</h4><span class="time">3:00 PM IST · Virtual</span></div></div><div class="web" data-r="y2026"><div class="wtop"><div><div class="d">16</div><div class="m">Mar 2026</div></div><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="3" y="6" width="13" height="12" rx="2"/><path d="M16 10l5-3v10l-5-3"/></svg></div><div class="wbody"><h4>Evolving GST implementation: law and practice</h4><span class="time">3:00–4:30 PM IST · Virtual</span></div></div><div class="web" data-r="y2026"><div class="wtop"><div><div class="d">13</div><div class="m">Mar 2026</div></div><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="3" y="6" width="13" height="12" rx="2"/><path d="M16 10l5-3v10l-5-3"/></svg></div><div class="wbody"><h4>RE–LSP compliance essentials</h4><span class="time">3:00–4:00 PM IST · Virtual</span></div></div></div>
+</div></section>
+
+<section><div class="wrap">
+<div class="sec-head"><div><span class="eyebrow">Research</span><h2>Reports that track India's fintech story</h2></div><a href="research.html" class="btn btn-outline">All research</a></div>
+<div class="covers reveal"><a href="https://www.fintechcouncil.in/images/Building%20Bridges%20for%20the%20Next%20Decade%20of%20Finance.pdf" target="_blank" rel="noopener" class="cover"><div class="book b1"><span class="kind">FCC · Report</span><h4>Building Bridges for the Next Decade of Finance</h4><span class="yr">FCC × IAMAI</span><svg viewBox="0 0 100 100" fill="none" stroke="#fff" stroke-width="3"><path d="M5 90 L30 60 L50 70 L75 30 L95 10"/><circle cx="95" cy="10" r="4" fill="#fff"/></svg></div><div class="meta"><span>Report</span><span class="link-arrow">PDF <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 4v11M7 10l5 5 5-5M5 20h14"/></svg></span></div></a><a href="https://www.fintechcouncil.in/images/UPI%20for%20Her.pdf" target="_blank" rel="noopener" class="cover"><div class="book b2"><span class="kind">FCC · Report</span><h4>UPI for Her</h4><span class="yr">FCC × IAMAI</span><svg viewBox="0 0 100 100" fill="none" stroke="#fff" stroke-width="3"><circle cx="50" cy="50" r="40"/><circle cx="50" cy="50" r="24"/><circle cx="50" cy="50" r="8" fill="#fff"/></svg></div><div class="meta"><span>Report</span><span class="link-arrow">PDF <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 4v11M7 10l5 5 5-5M5 20h14"/></svg></span></div></a><a href="https://www.fintechcouncil.in/images/Mapping%20the%20FinTech%20Innovation%20Landscape%20in%20India%20and%20comparing%20it%20with%20global%20trends.pdf" target="_blank" rel="noopener" class="cover"><div class="book b3"><span class="kind">FCC · Report</span><h4>Mapping the FinTech Innovation Landscape in India</h4><span class="yr">FCC × IAMAI</span><svg viewBox="0 0 100 100" fill="#fff"><rect x="8" y="70" width="16" height="30"/><rect x="32" y="50" width="16" height="50"/><rect x="56" y="30" width="16" height="70"/><rect x="80" y="5" width="16" height="95"/></svg></div><div class="meta"><span>Report</span><span class="link-arrow">PDF <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 4v11M7 10l5 5 5-5M5 20h14"/></svg></span></div></a><a href="https://www.fintechcouncil.in/images/4.pdf" target="_blank" rel="noopener" class="cover"><div class="book b4"><span class="kind">FCC · Report</span><h4>SuperApps: Breaking down barriers, building bridges</h4><span class="yr">FCC × IAMAI</span><svg viewBox="0 0 100 100" fill="none" stroke="#fff" stroke-width="3"><polygon points="50,5 95,30 95,75 50,98 5,75 5,30"/><polygon points="50,30 72,42 72,62 50,74 28,62 28,42"/></svg></div><div class="meta"><span>Report</span><span class="link-arrow">PDF <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 4v11M7 10l5 5 5-5M5 20h14"/></svg></span></div></a></div>
+</div></section>
+
+<section class="bg-soft"><div class="wrap">
+<div class="sec-head"><div><span class="eyebrow">Our members</span><h2>Trusted across financial services</h2><p class="lead">Lenders, banks, insurers, investment platforms, bureaus and RegTech firms shape the council's work.</p></div><a href="members.html" class="btn btn-outline">Member directory</a></div>
+<div class="marquee" style="margin-bottom:12px"><div class="marquee-track"><span class="mq"><i>A</i>ALT.DRX</span><span class="mq"><i>AO</i>Angel One</span><span class="mq"><i>A</i>Aska</span><span class="mq"><i>A</i>Axio</span><span class="mq"><i>B</i>Bankify</span><span class="mq"><i>B</i>Bitsyyloan</span><span class="mq"><i>B</i>Bondbazaar</span><span class="mq"><i>B</i>Bureau.Id</span><span class="mq"><i>CP</i>Care Pay</span><span class="mq"><i>C</i>Castler</span><span class="mq"><i>C</i>CIBIL</span><span class="mq"><i>C</i>Credilio</span><span class="mq"><i>CS</i>Credit Saison India</span><span class="mq"><i>C</i>Credresolve</span><span class="mq"><i>CM</i>Curie Money</span><span class="mq"><i>D</i>Decentro</span><span class="mq"><i>D</i>Dhan</span><span class="mq"><i>D</i>Digiqt</span><span class="mq"><i>D</i>Doqfy</span><span class="mq"><i>E</i>Easemydeal</span><span class="mq"><i>E</i>Emudhra</span><span class="mq"><i>E</i>Equifax</span><span class="mq"><i>E</i>Experian</span><span class="mq"><i>F</i>Faircent</span><span class="mq"><i>F</i>Fampay</span><span class="mq"><i>F</i>Finart</span><span class="mq"><i>F</i>Finbox</span><span class="mq"><i>F</i>Finsall</span><span class="mq"><i>F</i>Fios</span><span class="mq"><i>F</i>Flexpay</span><span class="mq"><i>F</i>FPL</span><span class="mq"><i>G</i>Ginteja</span><span class="mq"><i>G</i>Gridlines</span><span class="mq"><i>G</i>Gromo</span><span class="mq"><i>HT</i>Huey Tech</span><span class="mq"><i>IL</i>ICICI Lombard</span><span class="mq"><i>I</i>IDfy</span><span class="mq"><i>IP</i>India P2P</span><span class="mq"><i>I</i>Indifi</span><span class="mq"><i>IN</i>Indus Net Technologies</span><span class="mq"><i>A</i>ALT.DRX</span><span class="mq"><i>AO</i>Angel One</span><span class="mq"><i>A</i>Aska</span><span class="mq"><i>A</i>Axio</span><span class="mq"><i>B</i>Bankify</span><span class="mq"><i>B</i>Bitsyyloan</span><span class="mq"><i>B</i>Bondbazaar</span><span class="mq"><i>B</i>Bureau.Id</span><span class="mq"><i>CP</i>Care Pay</span><span class="mq"><i>C</i>Castler</span><span class="mq"><i>C</i>CIBIL</span><span class="mq"><i>C</i>Credilio</span><span class="mq"><i>CS</i>Credit Saison India</span><span class="mq"><i>C</i>Credresolve</span><span class="mq"><i>CM</i>Curie Money</span><span class="mq"><i>D</i>Decentro</span><span class="mq"><i>D</i>Dhan</span><span class="mq"><i>D</i>Digiqt</span><span class="mq"><i>D</i>Doqfy</span><span class="mq"><i>E</i>Easemydeal</span><span class="mq"><i>E</i>Emudhra</span><span class="mq"><i>E</i>Equifax</span><span class="mq"><i>E</i>Experian</span><span class="mq"><i>F</i>Faircent</span><span class="mq"><i>F</i>Fampay</span><span class="mq"><i>F</i>Finart</span><span class="mq"><i>F</i>Finbox</span><span class="mq"><i>F</i>Finsall</span><span class="mq"><i>F</i>Fios</span><span class="mq"><i>F</i>Flexpay</span><span class="mq"><i>F</i>FPL</span><span class="mq"><i>G</i>Ginteja</span><span class="mq"><i>G</i>Gridlines</span><span class="mq"><i>G</i>Gromo</span><span class="mq"><i>HT</i>Huey Tech</span><span class="mq"><i>IL</i>ICICI Lombard</span><span class="mq"><i>I</i>IDfy</span><span class="mq"><i>IP</i>India P2P</span><span class="mq"><i>I</i>Indifi</span><span class="mq"><i>IN</i>Indus Net Technologies</span></div></div><div class="marquee rev" style="margin-bottom:12px"><div class="marquee-track"><span class="mq"><i>A</i>Ambak</span><span class="mq"><i>A</i>Arya.ai</span><span class="mq"><i>A</i>Assetgro</span><span class="mq"><i>BT</i>Backspace Tech</span><span class="mq"><i>BP</i>Bima Plan</span><span class="mq"><i>B</i>Biz2x</span><span class="mq"><i>B</i>BuddyLoan</span><span class="mq"><i>BM</i>Butter Money</span><span class="mq"><i>C</i>Cashe</span><span class="mq"><i>C</i>Cherry</span><span class="mq"><i>C</i>Ckers</span><span class="mq"><i>CM</i>Credit Mantri</span><span class="mq"><i>C</i>Creditt</span><span class="mq"><i>CH</i>CRIF High Mark</span><span class="mq"><i>DS</i>Data Science Wizard</span><span class="mq"><i>D</i>Deepvue</span><span class="mq"><i>D</i>Digio</span><span class="mq"><i>DF</i>DMI Finance</span><span class="mq"><i>DC</i>Drip Capital</span><span class="mq"><i>EC</i>Eliteeye Consulting</span><span class="mq"><i>E</i>EnKash</span><span class="mq"><i>EM</i>ET Money</span><span class="mq"><i>F</i>Facctum</span><span class="mq"><i>F</i>Falcon</span><span class="mq"><i>F</i>Fatakpay</span><span class="mq"><i>F</i>FINB</span><span class="mq"><i>FS</i>Finnup Solutions</span><span class="mq"><i>F</i>Fintoo</span><span class="mq"><i>F</i>Flexiloans</span><span class="mq"><i>F</i>Flywire</span><span class="mq"><i>F</i>Freo</span><span class="mq"><i>G</i>GoCredit</span><span class="mq"><i>G</i>Grip</span><span class="mq"><i>G</i>Groww</span><span class="mq"><i>H</i>Hyperverge</span><span class="mq"><i>IS</i>ICICI Securities</span><span class="mq"><i>I</i>IDIGICLOUD</span><span class="mq"><i>I</i>Indiagold</span><span class="mq"><i>I</i>INDMoney</span><span class="mq"><i>ID</i>Insurance Dekho</span><span class="mq"><i>A</i>Ambak</span><span class="mq"><i>A</i>Arya.ai</span><span class="mq"><i>A</i>Assetgro</span><span class="mq"><i>BT</i>Backspace Tech</span><span class="mq"><i>BP</i>Bima Plan</span><span class="mq"><i>B</i>Biz2x</span><span class="mq"><i>B</i>BuddyLoan</span><span class="mq"><i>BM</i>Butter Money</span><span class="mq"><i>C</i>Cashe</span><span class="mq"><i>C</i>Cherry</span><span class="mq"><i>C</i>Ckers</span><span class="mq"><i>CM</i>Credit Mantri</span><span class="mq"><i>C</i>Creditt</span><span class="mq"><i>CH</i>CRIF High Mark</span><span class="mq"><i>DS</i>Data Science Wizard</span><span class="mq"><i>D</i>Deepvue</span><span class="mq"><i>D</i>Digio</span><span class="mq"><i>DF</i>DMI Finance</span><span class="mq"><i>DC</i>Drip Capital</span><span class="mq"><i>EC</i>Eliteeye Consulting</span><span class="mq"><i>E</i>EnKash</span><span class="mq"><i>EM</i>ET Money</span><span class="mq"><i>F</i>Facctum</span><span class="mq"><i>F</i>Falcon</span><span class="mq"><i>F</i>Fatakpay</span><span class="mq"><i>F</i>FINB</span><span class="mq"><i>FS</i>Finnup Solutions</span><span class="mq"><i>F</i>Fintoo</span><span class="mq"><i>F</i>Flexiloans</span><span class="mq"><i>F</i>Flywire</span><span class="mq"><i>F</i>Freo</span><span class="mq"><i>G</i>GoCredit</span><span class="mq"><i>G</i>Grip</span><span class="mq"><i>G</i>Groww</span><span class="mq"><i>H</i>Hyperverge</span><span class="mq"><i>IS</i>ICICI Securities</span><span class="mq"><i>I</i>IDIGICLOUD</span><span class="mq"><i>I</i>Indiagold</span><span class="mq"><i>I</i>INDMoney</span><span class="mq"><i>ID</i>Insurance Dekho</span></div></div>
+</div></section>
+<section class="bg-soft" style="padding-top:0"><div class="wrap"><div class="cta-box reveal"><div class="art"><svg class="net" viewBox="0 0 500 500" fill="none" aria-hidden="true"><circle cx="250" cy="250" r="232" stroke="rgba(255,255,255,.12)" stroke-dasharray="2 8"/><circle cx="250" cy="250" r="165" stroke="rgba(255,255,255,.28)" stroke-dasharray="4 6"><animateTransform attributeName="transform" type="rotate" from="0 250 250" to="360 250 250" dur="80s" repeatCount="indefinite"/></circle><circle cx="250" cy="250" r="96" stroke="rgba(255,255,255,.18)"/><circle cx="307.4" cy="25.2" r="4" fill="#fff" opacity=".7"/><text x="312.3" y="9.8" fill="rgba(255,255,255,.75)" font-family="JetBrains Mono,monospace" font-size="11" text-anchor="start">RBI</text><circle cx="461.5" cy="154.7" r="4" fill="#fff" opacity=".7"/><text x="479.8" y="150.5" fill="rgba(255,255,255,.75)" font-family="JetBrains Mono,monospace" font-size="11" text-anchor="start">SEBI</text><circle cx="456.4" cy="356.0" r="4" fill="#fff" opacity=".7"/><text x="474.2" y="369.1" fill="rgba(255,255,255,.75)" font-family="JetBrains Mono,monospace" font-size="11" text-anchor="start">IRDAI</text><circle cx="295.8" cy="477.4" r="4" fill="#fff" opacity=".7"/><text x="299.8" y="501.0" fill="rgba(255,255,255,.75)" font-family="JetBrains Mono,monospace" font-size="11" text-anchor="middle">NPCI</text><circle cx="100.8" cy="427.6" r="4" fill="#fff" opacity=".7"/><text x="87.9" y="446.9" fill="rgba(255,255,255,.75)" font-family="JetBrains Mono,monospace" font-size="11" text-anchor="end">MeitY</text><circle cx="18.1" cy="244.1" r="4" fill="#fff" opacity=".7"/><text x="-1.9" y="247.5" fill="rgba(255,255,255,.75)" font-family="JetBrains Mono,monospace" font-size="11" text-anchor="end">CERSAI</text><circle cx="110.0" cy="65.0" r="4" fill="#fff" opacity=".7"/><text x="98.0" y="53.0" fill="rgba(255,255,255,.75)" font-family="JetBrains Mono,monospace" font-size="11" text-anchor="end">IBBI</text><path id="p0" d="M250.0 85.0 L250 250" stroke="rgba(255,255,255,.35)" stroke-width="1.2"/><circle r="3.5" fill="#fff"><animateMotion dur="2.60s" repeatCount="indefinite" begin="-0.1s"><mpath href="#p0"/></animateMotion></circle><g><circle cx="250.0" cy="85.0" r="34" fill="rgba(255,255,255,.12)" stroke="rgba(255,255,255,.5)"/><circle cx="250.0" cy="85.0" r="34" stroke="#fff" stroke-opacity=".5"><animate attributeName="r" values="34;44;34" dur="4s" begin="0.0s" repeatCount="indefinite"/><animate attributeName="stroke-opacity" values=".5;0;.5" dur="4s" begin="0.0s" repeatCount="indefinite"/></circle><text x="250.0" y="89.0" fill="#fff" font-family="Plus Jakarta Sans,sans-serif" font-size="11.5" font-weight="700" text-anchor="middle">Lending</text></g><path id="p1" d="M392.9 167.5 L250 250" stroke="rgba(255,255,255,.35)" stroke-width="1.2"/><circle r="3.5" fill="#fff"><animateMotion dur="2.95s" repeatCount="indefinite" begin="-0.5s"><mpath href="#p1"/></animateMotion></circle><g><circle cx="392.9" cy="167.5" r="34" fill="rgba(255,255,255,.12)" stroke="rgba(255,255,255,.5)"/><circle cx="392.9" cy="167.5" r="34" stroke="#fff" stroke-opacity=".5"><animate attributeName="r" values="34;44;34" dur="4s" begin="0.6s" repeatCount="indefinite"/><animate attributeName="stroke-opacity" values=".5;0;.5" dur="4s" begin="0.6s" repeatCount="indefinite"/></circle><text x="392.9" y="171.5" fill="#fff" font-family="Plus Jakarta Sans,sans-serif" font-size="11.5" font-weight="700" text-anchor="middle">InsurTech</text></g><path id="p2" d="M392.9 332.5 L250 250" stroke="rgba(255,255,255,.35)" stroke-width="1.2"/><circle r="3.5" fill="#fff"><animateMotion dur="3.30s" repeatCount="indefinite" begin="-0.9s"><mpath href="#p2"/></animateMotion></circle><g><circle cx="392.9" cy="332.5" r="34" fill="rgba(255,255,255,.12)" stroke="rgba(255,255,255,.5)"/><circle cx="392.9" cy="332.5" r="34" stroke="#fff" stroke-opacity=".5"><animate attributeName="r" values="34;44;34" dur="4s" begin="1.2s" repeatCount="indefinite"/><animate attributeName="stroke-opacity" values=".5;0;.5" dur="4s" begin="1.2s" repeatCount="indefinite"/></circle><text x="392.9" y="336.5" fill="#fff" font-family="Plus Jakarta Sans,sans-serif" font-size="11.5" font-weight="700" text-anchor="middle">WealthTech</text></g><path id="p3" d="M250.0 415.0 L250 250" stroke="rgba(255,255,255,.35)" stroke-width="1.2"/><circle r="3.5" fill="#fff"><animateMotion dur="3.65s" repeatCount="indefinite" begin="-1.3s"><mpath href="#p3"/></animateMotion></circle><g><circle cx="250.0" cy="415.0" r="34" fill="rgba(255,255,255,.12)" stroke="rgba(255,255,255,.5)"/><circle cx="250.0" cy="415.0" r="34" stroke="#fff" stroke-opacity=".5"><animate attributeName="r" values="34;44;34" dur="4s" begin="1.8s" repeatCount="indefinite"/><animate attributeName="stroke-opacity" values=".5;0;.5" dur="4s" begin="1.8s" repeatCount="indefinite"/></circle><text x="250.0" y="419.0" fill="#fff" font-family="Plus Jakarta Sans,sans-serif" font-size="11.5" font-weight="700" text-anchor="middle">RegTech</text></g><path id="p4" d="M107.1 332.5 L250 250" stroke="rgba(255,255,255,.35)" stroke-width="1.2"/><circle r="3.5" fill="#fff"><animateMotion dur="4.00s" repeatCount="indefinite" begin="-1.7s"><mpath href="#p4"/></animateMotion></circle><g><circle cx="107.1" cy="332.5" r="34" fill="rgba(255,255,255,.12)" stroke="rgba(255,255,255,.5)"/><circle cx="107.1" cy="332.5" r="34" stroke="#fff" stroke-opacity=".5"><animate attributeName="r" values="34;44;34" dur="4s" begin="2.4s" repeatCount="indefinite"/><animate attributeName="stroke-opacity" values=".5;0;.5" dur="4s" begin="2.4s" repeatCount="indefinite"/></circle><text x="107.1" y="336.5" fill="#fff" font-family="Plus Jakarta Sans,sans-serif" font-size="11.5" font-weight="700" text-anchor="middle">Bureaus</text></g><path id="p5" d="M107.1 167.5 L250 250" stroke="rgba(255,255,255,.35)" stroke-width="1.2"/><circle r="3.5" fill="#fff"><animateMotion dur="4.35s" repeatCount="indefinite" begin="-2.1s"><mpath href="#p5"/></animateMotion></circle><g><circle cx="107.1" cy="167.5" r="34" fill="rgba(255,255,255,.12)" stroke="rgba(255,255,255,.5)"/><circle cx="107.1" cy="167.5" r="34" stroke="#fff" stroke-opacity=".5"><animate attributeName="r" values="34;44;34" dur="4s" begin="3.0s" repeatCount="indefinite"/><animate attributeName="stroke-opacity" values=".5;0;.5" dur="4s" begin="3.0s" repeatCount="indefinite"/></circle><text x="107.1" y="171.5" fill="#fff" font-family="Plus Jakarta Sans,sans-serif" font-size="11.5" font-weight="700" text-anchor="middle">Payments</text></g><circle cx="250" cy="250" r="62" fill="#fff"/><circle cx="250" cy="250" r="70" stroke="#fff" stroke-opacity=".4"/><text x="250" y="248" fill="#BF1A1F" font-family="Plus Jakarta Sans,sans-serif" font-size="26" font-weight="800" text-anchor="middle">FCC</text><text x="250" y="268" fill="#7B7D7C" font-family="JetBrains Mono,monospace" font-size="8.5" text-anchor="middle" letter-spacing="1.5">CONVERGENCE</text></svg></div><div style="position:relative"><span class="eyebrow">Membership &amp; partnership</span><h2>Have a seat at the table where fintech policy is shaped.</h2><p>Join FCC as a member, or partner with us on events, research and industry programmes.</p>
+<div class="cta-actions"><a href="apply-membership.html" class="btn btn-light">Apply for membership</a><a href="apply-partnership.html" class="btn btn-ghost">Partner with us</a></div></div>
+<ul class="checks"><li>Direct input into representations to regulators</li><li>A seat on sector committees with industry peers</li><li>Complimentary passes to FCC and IAMAI conferences</li><li>Members-only roundtables and every FCC report</li></ul></div></div></section></main>
+<footer><div class="wrap"><div class="foot">
+<div><a href="index.html" class="brand"><div class="brand-mark">FCC</div><div class="brand-text"><strong>Fintech Convergence Council</strong><span>An IAMAI initiative</span></div></a>
+<p style="margin-top:16px;max-width:300px">Bringing policymakers, regulators and the fintech industry together to grow financial services across India.</p>
+<div class="soc"><a href="https://linkedin.com/company/69219060/" aria-label="LinkedIn" target="_blank" rel="noopener">in</a><a href="https://twitter.com/FCCUpdates" aria-label="X" target="_blank" rel="noopener">𝕏</a><a href="https://www.facebook.com/Fintech-Convergence-Council-FCC-442712016473770/" aria-label="Facebook" target="_blank" rel="noopener">f</a></div></div>
+<div><h5>About</h5><ul><li><a href="about.html">About Us</a></li><li><a href="about.html#council">Governing Council</a></li><li><a href="annual-report.html">Annual Reports</a></li><li><a href="committees.html">Committees</a></li></ul></div>
+<div><h5>Work</h5><ul><li><a href="policy.html">Policy</a></li><li><a href="research.html">Research</a></li><li><a href="live-events.html">Live Events</a></li><li><a href="virtual-events.html">Virtual Events</a></li></ul></div>
+<div><h5>Join</h5><ul><li><a href="members.html">Our Members</a></li><li><a href="membership-benefits.html">Membership Benefits</a></li><li><a href="apply-membership.html">Apply for Membership</a></li><li><a href="partners.html">Partnerships</a></li></ul></div>
+<div><h5>Contact</h5><p>301-A, Godrej Two, Pirojshanagar,<br>Vikhroli, Mumbai 400079</p><p style="margin-top:10px"><a href="tel:02261766666">022-61766666</a><br><a href="mailto:info@fintechcouncil.in">info@fintechcouncil.in</a></p>
+<form class="newsletter" onsubmit="event.preventDefault();this.querySelector('input').value='';this.querySelector('input').placeholder='Thanks! You\'re on the list.'"><input type="email" placeholder="Get FCC updates" aria-label="Email"><button class="btn btn-primary btn-sm">Subscribe</button></form></div>
+</div><div class="foot-bottom"><span>© 2026 Fintech Convergence Council. All rights reserved.</span><span>An initiative of the Internet and Mobile Association of India</span></div></div></footer>
+<script>/* FCC site interactions */
+(function(){
+  // Mobile menu
+  const burger=document.querySelector('.burger'),menu=document.querySelector('.menu');
+  if(burger)burger.addEventListener('click',()=>{menu.classList.toggle('open');burger.setAttribute('aria-expanded',menu.classList.contains('open'))});
+
+  // Animate bar charts once the page has loaded
+  requestAnimationFrame(()=>document.querySelectorAll('.fill[data-w]').forEach(f=>f.style.width=f.dataset.w));
+
+  // Generic filter groups: <div data-filter-group="x"> chips with data-f, items with data-r, optional limit
+  document.querySelectorAll('[data-filter-for]').forEach(bar=>{
+    const list=document.getElementById(bar.dataset.filterFor);if(!list)return;
+    const items=[...list.children],limit=+(list.dataset.limit||0),more=document.querySelector('[data-more-for="'+list.id+'"]');
+    let f='all',open=false;
+    function render(){
+      const m=items.filter(i=>f==='all'||(i.dataset.r||'').split(' ').includes(f));
+      items.forEach(i=>i.classList.add('hide'));
+      m.forEach((i,ix)=>{if(!limit||open||ix<limit)i.classList.remove('hide')});
+      if(more){more.style.display=limit&&m.length>limit?'inline-flex':'none';more.textContent=open?'Show less':'Show all '+m.length}
+    }
+    bar.querySelectorAll('.chip').forEach(c=>c.addEventListener('click',()=>{bar.querySelectorAll('.chip').forEach(x=>x.classList.remove('active'));c.classList.add('active');f=c.dataset.f;open=false;render()}));
+    if(more)more.addEventListener('click',()=>{open=!open;render()});
+    render();
+  });
+
+  // Members directory
+  const mg=document.getElementById('mgrid');
+  if(mg&&window.FCC_MEMBERS){
+    const base='https://www.fintechcouncil.in/images/our-members/';
+    const q=document.getElementById('msearch'),az=document.getElementById('az'),cnt=document.getElementById('mcount');
+    let letter='all';
+    const initials=n=>{const w=n.replace(/[^A-Za-z0-9 ]/g,' ').split(' ').filter(Boolean);return(w.length>1?w[0][0]+w[1][0]:w[0].slice(0,2)).toUpperCase()};
+    const tiles=FCC_MEMBERS.map(([n,f])=>{
+      const a=document.createElement('div');a.className='mtile';a.dataset.n=n.toLowerCase();a.dataset.l=/[a-z]/i.test(n[0])?n[0].toUpperCase():'#';
+      const lg=document.createElement('div');lg.className='logo';
+      const av=document.createElement('div');av.className='mono-av';av.textContent=initials(n);
+      if(f){const im=new Image();im.alt=n;im.loading='lazy';im.src=base+encodeURIComponent(f);im.onload=()=>{lg.innerHTML='';lg.appendChild(im)};lg.appendChild(av)}else lg.appendChild(av);
+      const s=document.createElement('span');s.textContent=n;a.append(lg,s);mg.appendChild(a);return a});
+    const letters=new Set(tiles.map(t=>t.dataset.l));
+    ['all',...'ABCDEFGHIJKLMNOPQRSTUVWXYZ'].forEach(L=>{const b=document.createElement('button');b.textContent=L==='all'?'All':L;if(L==='all'){b.style.width='auto';b.style.padding='0 12px';b.classList.add('on')}if(L!=='all'&&!letters.has(L))b.disabled=true;b.onclick=()=>{letter=L;az.querySelectorAll('button').forEach(x=>x.classList.remove('on'));b.classList.add('on');run()};az.appendChild(b)});
+    function run(){const v=(q.value||'').toLowerCase().trim();let n=0;tiles.forEach(t=>{const ok=(letter==='all'||t.dataset.l===letter)&&(!v||t.dataset.n.includes(v));t.classList.toggle('hide',!ok);if(ok)n++});cnt.textContent='Showing '+n+' of '+tiles.length+' members'}
+    q.addEventListener('input',run);run();
+  }
+
+  // Forms (preview only)
+  document.querySelectorAll('form[data-preview]').forEach(f=>f.addEventListener('submit',e=>{e.preventDefault();const ok=f.querySelector('.form-ok');if(ok){ok.classList.add('show');ok.scrollIntoView({behavior:'smooth',block:'center'})}f.reset()}));
+})();
+</script>
+
+</body></html>
+
